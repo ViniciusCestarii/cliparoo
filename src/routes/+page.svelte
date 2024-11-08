@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { GlobalState, preventDefault } from '$lib';
+	import CurrentClipboard from '$lib/components/current-clipboard.svelte';
 
 	const gs = new GlobalState();
 
@@ -12,6 +13,7 @@
 <div class="hero bg-base-200 min-h-screen">
 	<div class="hero-content text-center">
 		<div class="max-w-md">
+			<CurrentClipboard />
 			{#if gs.greet}
 				<div class="flex flex-col items-center">
 					<h1 class="text-3xl font-bold mb-4">{gs.greet}</h1>
