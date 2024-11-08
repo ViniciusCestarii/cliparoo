@@ -12,7 +12,6 @@ $effect(() => {
 		clearInterval(id);
 	};
 });
-$inspect(clipboardContent);
 </script>
 
 <main>
