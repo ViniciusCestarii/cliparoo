@@ -13,6 +13,6 @@ export default {
 	plugins: [typography, forms, daisyui],
 
 	daisyui: {
-		themes: ['halloween', 'dark']
+		themes: ['dark', 'retro', 'cyberpunk', 'valentine', 'aqua'],
 	}
 } as Config;
