@@ -1,37 +1,47 @@
-import { invoke } from "@tauri-apps/api/core";
+import type { CliparooState as CliparooStateType, CreateClipboardEntry } from "./types";
 
-export const preventDefault = <T extends Event>(fn: (e: T) => void): ((e: T) => void) => {
-	return (e: T) => {
-		e.preventDefault();
-		fn(e);
-	};
-};
+const defaultState: CliparooStateType = {
+	clipboard: [],
+	theme: 'dark',
+}
 
-export class GlobalState {
-	private _state = $state({ name: '', greet: '' });
+export class CliparooState {
+	private _state = $state<CliparooStateType>(defaultState);
 
-	get greet() {
-		return this._state.greet;
+	get clipboard() {
+		return this._state.clipboard;
 	}
-	set greet(value: string) {
-		this._state.greet = value;
+	get theme() {
+		return this._state.theme;
 	}
-	get name() {
-		return this._state.name;
-	}
-	set name(value: string) {
-		this._state.name = value;
-	}
-	get nlen() {
-		return this.name.length;
+	set theme(value: CliparooStateType['theme']) {
+		this._state.theme = value;
 	}
 
-	async submit() {
-		this.greet = await invoke('greet', { name: this.name });
+	getFirstClipboardEntry() {
+		return this._state.clipboard.length > 0 ? this._state.clipboard[0] : null;
+	}
+
+	pushToClipboard(newEntry: CreateClipboardEntry) {
+
+		const timestamp = new Date().toISOString();
+		const type = 'text' // TODO: infer type from newEntry
+		
+		// If clipboard is empty, just add the new entry
+		if (this._state.clipboard.length === 0) {
+			this._state.clipboard.push({ ...newEntry, timestamp, type});
+			return;
+		}
+
+		const firstEntry = this.getFirstClipboardEntry()!;
+
+		// If new entry is different from the first entry, add
+		if (newEntry.text !== firstEntry.text && newEntry.window !== firstEntry.window) {
+			this._state.clipboard.push({ ...newEntry, timestamp, type});
+		}
 	}
 
 	reset() {
-		this.name = '';
-		this.greet = '';
+		this._state = defaultState;
 	}
 }
