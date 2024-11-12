@@ -9,6 +9,11 @@ export default defineConfig({
 	clearScreen: false,
 	server: {
 		port: 1420,
+		fs: {
+			allow: [
+				path.resolve('./tailwind.config.ts')
+			]
+		},
 		strictPort: true,
 		host: host || false,
 		hmr: host

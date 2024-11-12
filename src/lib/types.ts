@@ -1,3 +1,5 @@
+import { themes } from  "../../tailwind.config"
+
 export type ClipboardEntry = {
   window: string;
 	type: 'text' | 'image' | 'url';
@@ -9,5 +11,5 @@ export type CreateClipboardEntry = Omit<ClipboardEntry, 'timestamp' | 'type'>;
 
 export type CliparooState = {
 	clipboard: ClipboardEntry[];
-	theme: string;
+	theme: typeof themes[number];
 }

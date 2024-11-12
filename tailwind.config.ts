@@ -3,6 +3,8 @@ import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import daisyui from "daisyui"
 
+export const themes = ['dark', 'retro', 'cyberpunk', 'valentine', 'aqua'] as const;
+
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
 
@@ -21,6 +23,6 @@ export default {
 	plugins: [typography, forms, daisyui],
 
 	daisyui: {
-		themes: ['dark', 'retro', 'cyberpunk', 'valentine', 'aqua'],
+		themes,
 	}
 } as Config;
