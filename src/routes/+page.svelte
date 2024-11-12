@@ -29,7 +29,7 @@
 
 <ul class="flex flex-col space-y-2">
 	{#each cs.clipboard as entry}
-		<li class="card bg-base-300 p-2 h-36 flex flex-col justify-between">
+		<li class="card bg-base-300 p-2 h-32 flex flex-col justify-between">
 			<ClipboardWindowBadge window={entry.window} />
 			<!--- add ability to hide --->
 			<p
@@ -38,7 +38,7 @@
 			>
 				{entry.text}
 			</p>
-			<div class="flex justify-between items-center">
+			<div class="card-actions justify-between items-center">
 				<ClipboardTypeBadge type={entry.type} />
 				<!--- add ability to hide --->
 
