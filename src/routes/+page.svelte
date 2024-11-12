@@ -30,12 +30,12 @@
 <ul class="flex flex-col space-y-2">
 	{#each cs.clipboard as entry}
 		<li class="card bg-base-300 p-2">
-			<ClipboardWindowBadge window={entry.window} />
+			<ClipboardWindowBadge window={entry.window} /> <!--- add ability to hide --->
 			<p class="break-words">
 				{entry.text}
 			</p>
-			<time class="text-sm">{formatDate(entry.timestamp)}</time>
-			<ClipboardTypeBadge type={entry.type} />
+			<time class="text-sm">{formatDate(entry.timestamp)}</time> <!--- add ability to hide --->
+			<ClipboardTypeBadge type={entry.type} /> <!--- add ability to hide --->
 		</li>
 	{/each}
 </ul>
