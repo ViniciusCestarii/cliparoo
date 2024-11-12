@@ -1,18 +1,8 @@
 import { info } from "@tauri-apps/plugin-log";
 import type { CliparooState as CliparooStateType, ClipboardEntry, CreateClipboardEntry } from "./types";
 
-const defaultState: CliparooStateType = {
-	clipboard: [{
-		text: 'Welcome to Cliparoo!',
-		timestamp: new Date().toISOString(),
-		type: 'text',
-		window: "Super Big Window Title for Cliparoo test"
-	}],
-	theme: 'dark',
-}
-
 export class CliparooState {
-	private _state = $state<CliparooStateType>(defaultState);
+	private _state = $state<CliparooStateType>(loadStateFromStorage());
 	private _firstEntry = $state(this.getFirstClipboardEntry());
 
 	get clipboard() {
@@ -23,6 +13,7 @@ export class CliparooState {
 	}
 	set theme(value: CliparooStateType['theme']) {
 		this._state.theme = value;
+		this.saveState();
 	}
 
 	getFirstClipboardEntry() {
@@ -37,11 +28,11 @@ export class CliparooState {
 
 		// Prevent adding the same entry twice
 		if (baseEntry.text === this._firstEntry?.text) {
-			return
+			return;
 		}
 
 		const timestamp = new Date().toISOString();
-		const type: ClipboardEntry["type"] = 'text' // TODO: infer type from newEntry
+		const type: ClipboardEntry["type"] = 'text'; // TODO: infer type from newEntry
 
 		const newEntry = { ...baseEntry, timestamp, type };
 
@@ -49,9 +40,33 @@ export class CliparooState {
 		
 		this._state.clipboard.push(newEntry);
 		this._firstEntry = newEntry;
+
+		this.saveState();
 	}
 
 	reset() {
-		this._state = defaultState;
+		this._state = loadStateFromStorage();
+		this.saveState();
 	}
+
+	private saveState = () => saveStateToStorage(this._state);
+}
+
+const STATE_KEY = 'cliparooState';
+
+const loadStateFromStorage = (): CliparooStateType => {
+	const storedState = localStorage.getItem(STATE_KEY);
+	return storedState ? JSON.parse(storedState) : {
+		clipboard: [{
+			text: 'Welcome to Cliparoo!',
+			timestamp: new Date().toISOString(),
+			type: 'text',
+			window: "Super Big Window Title for Cliparoo test"
+		}],
+		theme: 'dark',
+	};
+};
+
+const saveStateToStorage = (state: CliparooStateType) => {
+	localStorage.setItem(STATE_KEY, JSON.stringify(state));
 }
