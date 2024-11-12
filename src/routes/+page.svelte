@@ -16,7 +16,7 @@
 				await invoke<string>('get_window_name')
 			]);
 
-			cs.pushToClipboard({ text: clipboardContent, window: currentWindowName });
+			cs.addClipboardEntry({ text: clipboardContent, window: currentWindowName });
 		}, 200);
 
 		return () => {

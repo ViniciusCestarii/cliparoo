@@ -24,7 +24,7 @@ export class CliparooState {
 		return this._state.clipboard.length === 0;
 	}
 
-	pushToClipboard(baseEntry: CreateClipboardEntry) {
+	addClipboardEntry(baseEntry: CreateClipboardEntry) {
 
 		// Prevent adding the same entry twice
 		if (baseEntry.text === this._firstEntry?.text) {
@@ -38,7 +38,7 @@ export class CliparooState {
 
 		info(`Pushing to clipboard ${Object.entries(newEntry).map(([key, value]) => `${key}: ${value}`).join(', ')}`);
 		
-		this._state.clipboard.push(newEntry);
+		this._state.clipboard.unshift(newEntry);
 		this._firstEntry = newEntry;
 
 		this.saveState();
