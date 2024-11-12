@@ -38,10 +38,12 @@
 	let icon = $state(getIconForWindow(window));
 </script>
 
-<span class="badge flex gap-1"
-	>{window}
+<span class="badge flex w-full max-w-fit justify-start gap-1">
+	<span class="text-ellipsis whitespace-nowrap overflow-hidden">
+		{window}
+	</span>
 	<svg
-		class="w-4 h-4"
+		class="w-4 h-4 flex-shrink-0"
 		fill="currentColor"
 		viewBox="0 0 24 24"
 		xmlns="http://www.w3.org/2000/svg"

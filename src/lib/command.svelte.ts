@@ -6,7 +6,7 @@ const defaultState: CliparooStateType = {
 		text: 'Welcome to Cliparoo!',
 		timestamp: new Date().toISOString(),
 		type: 'text',
-		window: "Cliparoo"
+		window: "Super Big Window Title for Cliparoo test"
 	}],
 	theme: 'dark',
 }

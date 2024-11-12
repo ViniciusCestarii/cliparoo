@@ -2,12 +2,9 @@
 	import { CliparooState } from '$lib';
 	import ClipboardTypeBadge from '$lib/components/clipboard-type-badge.svelte';
 	import ClipboardWindowBadge from '$lib/components/clipboard-window-badge.svelte';
-	import CurrentClipboard from '$lib/components/current-clipboard.svelte';
-	import CurrentWindow from '$lib/components/current-window.svelte';
 	import { formatDate } from '$lib/format';
 	import { invoke } from '@tauri-apps/api/core';
 	import { readText } from '@tauri-apps/plugin-clipboard-manager';
-	import { info } from '@tauri-apps/plugin-log';
 
 	const cs = new CliparooState();
 
@@ -34,7 +31,7 @@
 	{#each cs.clipboard as entry}
 		<li class="card bg-base-300 p-2">
 			<ClipboardWindowBadge window={entry.window} />
-			<p>
+			<p class="break-words">
 				{entry.text}
 			</p>
 			<time class="text-sm">{formatDate(entry.timestamp)}</time>
