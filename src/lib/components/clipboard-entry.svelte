@@ -12,7 +12,7 @@
 	<!--- add ability to hide --->
 	<p
 		style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
-		class="break-words text-ellipsis overflow-hidden"
+		class="break-words text-ellipsis overflow-hidden text-sm pl-1"
 	>
 		{entry.text}
 	</p>

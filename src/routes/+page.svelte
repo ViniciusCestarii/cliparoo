@@ -25,7 +25,7 @@
 	});
 </script>
 
-<ul class="flex flex-col space-y-2">
+<ul class="flex flex-col space-y-2 px-2">
 	{#each cs.clipboard as entry (entry.timestamp)}
 		<ClipboardEntry {entry} />
 	{/each}
