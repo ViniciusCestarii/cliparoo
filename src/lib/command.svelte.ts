@@ -1,4 +1,5 @@
-import type { CliparooState as CliparooStateType, CreateClipboardEntry } from "./types";
+import { info } from "@tauri-apps/plugin-log";
+import type { CliparooState as CliparooStateType, ClipboardEntry, CreateClipboardEntry } from "./types";
 
 const defaultState: CliparooStateType = {
 	clipboard: [],
@@ -7,6 +8,7 @@ const defaultState: CliparooStateType = {
 
 export class CliparooState {
 	private _state = $state<CliparooStateType>(defaultState);
+	private _firstEntry = $state(this.getFirstClipboardEntry());
 
 	get clipboard() {
 		return this._state.clipboard;
@@ -22,23 +24,26 @@ export class CliparooState {
 		return this._state.clipboard.length > 0 ? this._state.clipboard[0] : null;
 	}
 
-	pushToClipboard(newEntry: CreateClipboardEntry) {
+	isClipboardEmpty() {
+		return this._state.clipboard.length === 0;
+	}
+
+	pushToClipboard(baseEntry: CreateClipboardEntry) {
+
+		// Prevent adding the same entry twice
+		if (baseEntry.text === this._firstEntry?.text) {
+			return
+		}
 
 		const timestamp = new Date().toISOString();
-		const type = 'text' // TODO: infer type from newEntry
+		const type: ClipboardEntry["type"] = 'text' // TODO: infer type from newEntry
+
+		const newEntry = { ...baseEntry, timestamp, type };
+
+		info(`Pushing to clipboard ${Object.entries(newEntry).map(([key, value]) => `${key}: ${value}`).join(', ')}`);
 		
-		// If clipboard is empty, just add the new entry
-		if (this._state.clipboard.length === 0) {
-			this._state.clipboard.push({ ...newEntry, timestamp, type});
-			return;
-		}
-
-		const firstEntry = this.getFirstClipboardEntry()!;
-
-		// If new entry is different from the first entry, add
-		if (newEntry.text !== firstEntry.text && newEntry.window !== firstEntry.window) {
-			this._state.clipboard.push({ ...newEntry, timestamp, type});
-		}
+		this._state.clipboard.push(newEntry);
+		this._firstEntry = newEntry;
 	}
 
 	reset() {

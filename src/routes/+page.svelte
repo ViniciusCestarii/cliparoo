@@ -17,9 +17,7 @@
 				await readText(),
 				await invoke<string>('get_window_name')
 			]);
-
-			info(`${clipboardContent} ${currentWindowName}`);
-
+			
 			cs.pushToClipboard({ text: clipboardContent, window: currentWindowName });
 		}, 200);
 
@@ -27,8 +25,6 @@
 			clearInterval(id);
 		};
 	});
-
-	$inspect(cs.clipboard, cs.theme);
 </script>
 
 <div class="bg-base-200 min-h-screen">
