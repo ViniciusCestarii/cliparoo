@@ -2,7 +2,12 @@ import { info } from "@tauri-apps/plugin-log";
 import type { CliparooState as CliparooStateType, ClipboardEntry, CreateClipboardEntry } from "./types";
 
 const defaultState: CliparooStateType = {
-	clipboard: [],
+	clipboard: [{
+		text: 'Welcome to Cliparoo!',
+		timestamp: new Date().toISOString(),
+		type: 'text',
+		window: "Cliparoo"
+	}],
 	theme: 'dark',
 }
 

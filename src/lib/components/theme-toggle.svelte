@@ -1,4 +1,4 @@
-<div class="dropdown mb-72">
+<div class="dropdown dropdown-end  mb-72">
   <div tabIndex={0} role="button" class="btn m-1">
     Theme
     <svg
