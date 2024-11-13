@@ -2,19 +2,28 @@
 	import cs from '$lib/cliparoo-state.svelte';
 	import { formatDate } from '$lib/format';
 	import type { ClipboardEntry } from '$lib/types';
+	import { fly } from 'svelte/transition';
 	import ClipboardDropdownMenu from './clipboard-dropdown-menu.svelte';
 	import ClipboardTypeBadge from './clipboard-type-badge.svelte';
 	import ClipboardWindowBadge from './clipboard-window-badge.svelte';
 	import { writeText } from '@tauri-apps/plugin-clipboard-manager';
 
+	interface ClipboardEntryProps {
+		entry: ClipboardEntry;
+	}
+
+	let { entry }: ClipboardEntryProps = $props();
+
 	async function handleEntryClick(text: string) {
 		await writeText(text);
 		cs.ignoreNext(text);
-		// modify feedback
-		alert('Text copied! Use Ctrl+V (or Command+V) to paste it in the desired location.');
+		showCopiedIcon = true;
+		setTimeout(() => {
+			showCopiedIcon = false;
+		}, 1500);
 	}
 
-	let { entry }: { entry: ClipboardEntry } = $props();
+	let showCopiedIcon = $state(false);
 </script>
 
 <li class="relative">
@@ -45,4 +54,24 @@
 		}}
 		entryId={entry.id}
 	/>
+	{#if showCopiedIcon}
+		<div
+			transition:fly={{ duration: 150, y: 5 }}
+			class="absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] border border-base-content rounded-btn p-1 bg-base-200"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				class="lucide lucide-check-check"
+				><path d="M18 6 7 17l-5-5" /><path d="m22 10-7.5 7.5L13 16" /></svg
+			>
+		</div>
+	{/if}
 </li>
