@@ -9,6 +9,7 @@
 
 	async function handleEntryClick(text: string) {
 		await writeText(text);
+		cs.ignoreNext(text);
 		// modify feedback
 		alert('Text copied! Use Ctrl+V (or Command+V) to paste it in the desired location.');
 	}

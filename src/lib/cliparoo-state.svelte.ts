@@ -9,6 +9,7 @@ import { binarySearch } from './search';
 class CliparooState {
 	#state = $state<CliparooStateType>(loadStateFromStorage());
 	#firstEntry = $state(this.getFirstClipboardEntry());
+	#ignoreNext: null | string = null;
 
 	get clipboard() {
 		return this.#state.clipboard;
@@ -31,7 +32,7 @@ class CliparooState {
 
 	addClipboardEntry(baseEntry: CreateClipboardEntry) {
 		// Prevent adding the same entry twice
-		if (baseEntry.text === this.#firstEntry?.text) {
+		if (baseEntry.text === this.#firstEntry?.text || baseEntry.text === this.#ignoreNext) {
 			return null;
 		}
 
@@ -53,6 +54,10 @@ class CliparooState {
 		this._saveState();
 
 		return newEntry;
+	}
+
+	ignoreNext(text: string) {
+		this.#ignoreNext = text;
 	}
 
 	deleteClipboardEntry(id: number) {
