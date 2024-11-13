@@ -1,17 +1,17 @@
 <script>
-	import { readText, } from '@tauri-apps/plugin-clipboard-manager';
+	import { readText } from '@tauri-apps/plugin-clipboard-manager';
 
-let clipboardContent = $state("")
+	let clipboardContent = $state('');
 
-$effect(() => {
-	const id = setInterval(async () => {
-		clipboardContent = await readText();
-	}, 200);
+	$effect(() => {
+		const id = setInterval(async () => {
+			clipboardContent = await readText();
+		}, 200);
 
-	return () => {
-		clearInterval(id);
-	};
-});
+		return () => {
+			clearInterval(id);
+		};
+	});
 </script>
 
 <main>

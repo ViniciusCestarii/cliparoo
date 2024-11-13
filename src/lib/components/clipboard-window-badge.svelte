@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-import * as SimpleIcons from 'simple-icons';
+	import * as SimpleIcons from 'simple-icons';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	type SimpleIcon = SimpleIcons.SimpleIcon;
@@ -44,7 +44,7 @@ import * as SimpleIcons from 'simple-icons';
 	let icon = $state(getIconForWindow(window));
 </script>
 
-<span class={cn("badge flex w-full max-w-fit justify-start gap-1", className)}>
+<span class={cn('badge flex w-full max-w-fit justify-start gap-1', className)}>
 	<span class="text-ellipsis whitespace-nowrap overflow-hidden">
 		{window}
 	</span>

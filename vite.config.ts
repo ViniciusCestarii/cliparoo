@@ -10,26 +10,24 @@ export default defineConfig({
 	server: {
 		port: 1420,
 		fs: {
-			allow: [
-				path.resolve('./tailwind.config.ts')
-			]
+			allow: [path.resolve('./tailwind.config.ts')]
 		},
 		strictPort: true,
 		host: host || false,
 		hmr: host
 			? {
-				protocol: "ws",
-				host,
-				port: 1421,
-			}
+					protocol: 'ws',
+					host,
+					port: 1421
+				}
 			: undefined,
 		watch: {
-			ignored: ["**/src-tauri/**"],
-		},
+			ignored: ['**/src-tauri/**']
+		}
 	},
 	resolve: {
 		alias: {
-			$lib: path.resolve("./src/lib"),
-		},
-	},
+			$lib: path.resolve('./src/lib')
+		}
+	}
 });

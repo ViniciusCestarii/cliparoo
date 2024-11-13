@@ -24,7 +24,7 @@
 				name="theme-dropdown"
 				class="theme-controller btn btn-sm btn-block btn-ghost justify-start capitalize"
 				checked={theme === cs.theme}
-        onclick={() => cs.theme = theme}
+				onclick={() => (cs.theme = theme)}
 				aria-label={theme}
 				value={theme}
 			/>
