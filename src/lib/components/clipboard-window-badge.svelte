@@ -40,7 +40,6 @@
 	}
 
 	let { class: className, window }: ClipboardWindowBadgeProps = $props();
-
 </script>
 
 <span class={cn('badge flex w-full max-w-fit justify-start gap-1', className)}>
