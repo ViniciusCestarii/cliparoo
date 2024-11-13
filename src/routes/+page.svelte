@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { CliparooState } from '$lib';
+	import { invokeGetWindowName } from '$lib';
+	import { CliparooState } from '$lib/cliparoo-state.svelte';
 	import ClipboardEntry from '$lib/components/clipboard-entry.svelte';
-	import { invoke } from '@tauri-apps/api/core';
 	import { readText } from '@tauri-apps/plugin-clipboard-manager';
 
 	const cs = new CliparooState();
@@ -13,7 +13,7 @@
 		const id = setInterval(async () => {
 			const [clipboardContent, currentWindowName] = await Promise.all([
 				await readText(),
-				await invoke<string>('get_window_name')
+				await invokeGetWindowName()
 			]);
 
 			cs.addClipboardEntry({ text: clipboardContent, window: currentWindowName });

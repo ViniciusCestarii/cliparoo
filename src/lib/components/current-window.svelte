@@ -1,11 +1,11 @@
 <script>
-	import { invoke } from "@tauri-apps/api/core";
+	import { invokeGetWindowName } from "$lib/command.svelte";
 
   let currentWindowName = $state("");
   
   $effect(() => {
     const id = setInterval(async () => {
-      currentWindowName = await invoke("get_window_name");
+      currentWindowName = await invokeGetWindowName();
     }, 200);
   
     return () => {
