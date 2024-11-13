@@ -8,9 +8,10 @@
 	import { writeText } from '@tauri-apps/plugin-clipboard-manager';
 
 	async function handleEntryClick(text: string) {
-  await writeText(text);
-  alert("Text copied! Use Ctrl+V (or Command+V) to paste it in the desired location.");
-}
+		await writeText(text);
+		// modify feedback
+		alert('Text copied! Use Ctrl+V (or Command+V) to paste it in the desired location.');
+	}
 
 	let { entry }: { entry: ClipboardEntry } = $props();
 </script>
@@ -20,7 +21,7 @@
 		class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
 		onclick={() => handleEntryClick(entry.text)}
 	>
-		<ClipboardWindowBadge class="mr-10" window={entry.window} />
+		<ClipboardWindowBadge class="w-[calc(100%-2.25rem)]" window={entry.window} />
 		<!--- add ability to hide --->
 		<p
 			style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
@@ -36,5 +37,11 @@
 			<!--- add ability to hide --->
 		</div>
 	</button>
-	<ClipboardDropdownMenu class="absolute top-2 right-2" entryId={entry.id} />
+	<ClipboardDropdownMenu
+		class="absolute top-[calc(0.5rem+2px)] right-2 p-0"
+		buttonProps={{
+			class: 'bg-transparent border-none hover:border focus:ring-2 ring-base-content'
+		}}
+		entryId={entry.id}
+	/>
 </li>

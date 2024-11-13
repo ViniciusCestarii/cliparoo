@@ -6,12 +6,13 @@
 
 	interface DropdownMenuProps extends HTMLAttributes<HTMLElement> {
 		entryId: ClipboardEntry['id'];
+    buttonProps?: HTMLAttributes<HTMLButtonElement>;
 	}
-	let { class: className, entryId, ...props }: DropdownMenuProps = $props();
+	let { class: className, entryId, buttonProps, ...props }: DropdownMenuProps = $props();
 </script>
 
 <div {...props} class={cn('dropdown dropdown-end', className)}>
-	<button tabindex="0" class="btn btn-sm size-8 p-0" aria-label="more options">
+	<button {...buttonProps} tabindex="0" class={cn("btn btn-sm size-8 p-0", buttonProps?.class)} aria-label="more options">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width=16
