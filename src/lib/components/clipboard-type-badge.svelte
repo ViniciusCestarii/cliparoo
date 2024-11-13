@@ -6,9 +6,9 @@
 	}
 
 	const badgeClass: Record<ClipboardEntry['type'], string> = {
-		text: 'primary',
-		image: 'secondary',
-		url: 'accent'
+		text: 'badge-primary',
+		image: 'badge-secondary',
+		url: 'badge-accent'
 	};
 
 	let { type }: ClipboardTypeBadgeProps = $props();

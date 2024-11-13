@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CliparooState } from '$lib/command.svelte';
+	import { CliparooState } from '$lib/cliparoo-state.svelte';
 	import { themes } from '../../../tailwind.config';
 
 	const cs = new CliparooState();

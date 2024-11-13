@@ -13,7 +13,7 @@ export class CliparooState {
 	}
 	set theme(value: CliparooStateType['theme']) {
 		this._state.theme = value;
-		this.saveState();
+		this._saveState();
 	}
 
 	getFirstClipboardEntry() {
@@ -32,7 +32,7 @@ export class CliparooState {
 		}
 
 		const timestamp = new Date().toISOString();
-		const type: ClipboardEntry["type"] = 'text'; // TODO: infer type from newEntry
+		const type: ClipboardEntry["type"] = getType(baseEntry.text);
 
 		const newEntry = { ...baseEntry, timestamp, type };
 
@@ -41,15 +41,15 @@ export class CliparooState {
 		this._state.clipboard.unshift(newEntry);
 		this._firstEntry = newEntry;
 
-		this.saveState();
+		this._saveState();
 	}
 
 	reset() {
 		this._state = loadStateFromStorage();
-		this.saveState();
+		this._saveState();
 	}
 
-	private saveState = () => saveStateToStorage(this._state);
+	private _saveState = () => saveStateToStorage(this._state);
 }
 
 const STATE_KEY = 'cliparooState';
@@ -69,4 +69,11 @@ const loadStateFromStorage = (): CliparooStateType => {
 
 const saveStateToStorage = (state: CliparooStateType) => {
 	localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+const URL_REGEX = /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/
+
+const getType = (text: ClipboardEntry["text"]): ClipboardEntry["type"] => {
+  if (text.match(URL_REGEX)) return 'url';
+  return 'text';
 }
