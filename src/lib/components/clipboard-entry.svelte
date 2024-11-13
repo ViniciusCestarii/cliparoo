@@ -1,6 +1,8 @@
 <script lang="ts">
+	import cs from '$lib/cliparoo-state.svelte';
 	import { formatDate } from '$lib/format';
 	import type { ClipboardEntry } from '$lib/types';
+	import ClipboardDropdownMenu from './clipboard-dropdown-menu.svelte';
 	import ClipboardTypeBadge from './clipboard-type-badge.svelte';
 	import ClipboardWindowBadge from './clipboard-window-badge.svelte';
 	import { writeText } from '@tauri-apps/plugin-clipboard-manager';
@@ -13,12 +15,12 @@
 	let { entry }: { entry: ClipboardEntry } = $props();
 </script>
 
-<li>
+<li class="relative">
 	<button
 		class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
 		onclick={() => handleEntryClick(entry.text)}
 	>
-		<ClipboardWindowBadge window={entry.window} />
+		<ClipboardWindowBadge class="mr-10" window={entry.window} />
 		<!--- add ability to hide --->
 		<p
 			style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
@@ -34,4 +36,5 @@
 			<!--- add ability to hide --->
 		</div>
 	</button>
+	<ClipboardDropdownMenu class="absolute top-2 right-2" entryId={entry.id} />
 </li>

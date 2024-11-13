@@ -34,6 +34,8 @@
     "@tauri-apps/plugin-clipboard-manager": "^2.0.0",
     "@tauri-apps/plugin-log": "~2",
     "bun-types": "^1.1.33",
-    "simple-icons": "^13.16.0"
+    "clsx": "^2.1.1",
+    "simple-icons": "^13.16.0",
+    "tailwind-merge": "^2.5.4"
   }
 }

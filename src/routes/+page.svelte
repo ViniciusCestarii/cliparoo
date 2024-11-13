@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { invokeGetWindowName } from '$lib';
-	import { CliparooState } from '$lib/cliparoo-state.svelte';
+	import cs from '$lib/cliparoo-state.svelte';
 	import ClipboardEntry from '$lib/components/clipboard-entry.svelte';
 	import { readText } from '@tauri-apps/plugin-clipboard-manager';
-
-	const cs = new CliparooState();
+	import { attachConsole, info, warn } from '@tauri-apps/plugin-log';
 
 	// fix:
 	// [2024-11-09][23:47:40][tao::platform_impl::platform::event_loop::runner][WARN] NewEvents emitted without explicit RedrawEventsCleared
@@ -26,7 +25,7 @@
 </script>
 
 <ul class="flex flex-col space-y-2 px-2">
-	{#each cs.clipboard as entry (entry.timestamp)}
+	{#each cs.clipboard as entry (entry.id)}
 		<ClipboardEntry {entry} />
 	{/each}
 </ul>

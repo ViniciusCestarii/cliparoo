@@ -1,5 +1,7 @@
 <script lang="ts">
-	import * as SimpleIcons from 'simple-icons';
+	import { cn } from '$lib/utils';
+import * as SimpleIcons from 'simple-icons';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	type SimpleIcon = SimpleIcons.SimpleIcon;
 
@@ -33,12 +35,16 @@
 		return SimpleIcons['siGhostery'];
 	}
 
-	let { window }: { window: string } = $props();
+	interface ClipboardWindowBadgeProps extends HTMLAttributes<HTMLElement> {
+		window: string;
+	}
+
+	let { class: className, window }: ClipboardWindowBadgeProps = $props();
 
 	let icon = $state(getIconForWindow(window));
 </script>
 
-<span class="badge flex w-full max-w-fit justify-start gap-1">
+<span class={cn("badge flex w-full max-w-fit justify-start gap-1", className)}>
 	<span class="text-ellipsis whitespace-nowrap overflow-hidden">
 		{window}
 	</span>

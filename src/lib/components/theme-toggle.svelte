@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { CliparooState } from '$lib/cliparoo-state.svelte';
+	import cs from '$lib/cliparoo-state.svelte';
 	import { themes } from '../../../tailwind.config';
-
-	const cs = new CliparooState();
 </script>
 
 <div class="dropdown dropdown-end mb-72">
