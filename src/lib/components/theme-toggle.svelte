@@ -17,7 +17,9 @@
 		</svg>
 	</div>
 
-	<ul class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl max-h-[calc(100vh-12rem)] overflow-y-auto">
+	<ul
+		class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl max-h-[calc(100vh-12rem)] overflow-y-auto"
+	>
 		{#each themes as theme}
 			<input
 				type="radio"
@@ -35,34 +37,33 @@
 <style>
 	/* Hide the default radio button appearance */
 	.theme-controller[type='radio'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  position: relative;
-  padding-left: 1.5rem;
-}
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		position: relative;
+		padding-left: 1.5rem;
+	}
 
-.theme-controller::before {
-  content: '';
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: 2px solid currentColor;
-  transition: background-color 0.3s;
-}
+	.theme-controller::before {
+		content: '';
+		position: absolute;
+		left: 0.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background-color: transparent;
+		border: 2px solid currentColor;
+		transition: background-color 0.3s;
+	}
 
-/* Change color for selected theme */
-.theme-controller:checked::before {
-  background-color: currentColor;
-}
+	/* Change color for selected theme */
+	.theme-controller:checked::before {
+		background-color: currentColor;
+	}
 
-.theme-controller[type='radio']:checked {
-    background-image: initial;
-}
-
+	.theme-controller[type='radio']:checked {
+		background-image: initial;
+	}
 </style>
