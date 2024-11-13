@@ -32,7 +32,7 @@ class CliparooState {
 	addClipboardEntry(baseEntry: CreateClipboardEntry) {
 		// Prevent adding the same entry twice
 		if (baseEntry.text === this.#firstEntry?.text) {
-			return;
+			return null;
 		}
 
 		const timestamp = new Date().toISOString();
@@ -51,6 +51,8 @@ class CliparooState {
 		this.#firstEntry = newEntry;
 
 		this._saveState();
+
+		return newEntry;
 	}
 
 	deleteClipboardEntry(id: number) {

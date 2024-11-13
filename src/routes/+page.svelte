@@ -15,7 +15,11 @@
 				await invokeGetWindowName()
 			]);
 
-			cs.addClipboardEntry({ text: clipboardContent, window: currentWindowName });
+			const createdEntry = cs.addClipboardEntry({ text: clipboardContent, window: currentWindowName });
+
+			if (createdEntry) {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
 		}, 200);
 
 		return () => {
