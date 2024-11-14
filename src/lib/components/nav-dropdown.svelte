@@ -26,8 +26,8 @@
 				>{name}</a
 			>
 		{/snippet}
-    {@render link('/','Clipboard')}
-    {@render link('/dashboard','Dashboard')}
-    {@render link('/configuration','Configurations')}
+		{@render link('/', 'Clipboard')}
+		{@render link('/dashboard', 'Dashboard')}
+		{@render link('/configuration', 'Configurations')}
 	</ul>
 </div>
