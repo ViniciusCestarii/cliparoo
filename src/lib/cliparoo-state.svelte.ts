@@ -19,6 +19,7 @@ class CliparooState {
 	}
 	set theme(value: CliparooStateType['theme']) {
 		this.#state.theme = value;
+		document.documentElement.setAttribute('data-theme', value);
 		this._saveState();
 	}
 
@@ -88,7 +89,7 @@ const STATE_KEY = 'cliparooState';
 
 const loadStateFromStorage = (): CliparooStateType => {
 	const storedState = localStorage.getItem(STATE_KEY);
-	return storedState
+	const state = storedState
 		? JSON.parse(storedState)
 		: {
 				clipboard: [
@@ -102,6 +103,10 @@ const loadStateFromStorage = (): CliparooStateType => {
 				],
 				theme: 'dark'
 			};
+
+	document.documentElement.setAttribute('data-theme', state.theme);
+
+	return state;
 };
 
 const saveStateToStorage = (state: CliparooStateType) => {
