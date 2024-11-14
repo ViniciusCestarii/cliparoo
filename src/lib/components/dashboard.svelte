@@ -19,15 +19,14 @@
 	let types = $derived(cs.clipboard.map((entry) => entry.type));
 	let uniqueTypes = $derived([...new Set(types)]);
 
-  let colors = $state(getColors())
+	let colors = $state(getColors());
 
-  const updateColors = () => {
-    colors = getColors()
-  }
+	const updateColors = () => {
+		colors = getColors();
+	};
 
-  const observer = new MutationObserver(updateColors);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-
+	const observer = new MutationObserver(updateColors);
+	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 	let data: ChartData<'doughnut', number[], unknown> = $derived({
 		labels: uniqueTypes,
