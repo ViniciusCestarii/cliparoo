@@ -121,6 +121,6 @@ const getType = (text: ClipboardEntry['text']): ClipboardEntry['type'] => {
 	return 'text';
 };
 
-const cs = new CliparooState()
+const cs = new CliparooState();
 
 export default cs;
