@@ -19,22 +19,15 @@
 	<ul
 		class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl max-h-[calc(100vh-12rem)] overflow-y-auto"
 	>
-		<a
-			href="/"
-			class="btn btn-ghost w-full justify-start {$page.url.pathname === '/' ? 'btn-active' : ''}"
-			>Clipboard</a
-		>
-		<a
-			href="/dashboard"
-			class="btn btn-ghost w-full justify-start {$page.url.pathname === '/dashboard'
-				? 'btn-active'
-				: ''}">Dashboard</a
-		>
-		<a
-			href="/configuration"
-			class="btn btn-ghost w-full justify-start {$page.url.pathname === '/configuration'
-				? 'btn-active'
-				: ''}">Configurations</a
-		>
+		{#snippet link(href: string, name: string)}
+			<a
+				{href}
+				class="btn btn-ghost w-full justify-start {$page.url.pathname === href ? 'btn-active' : ''}"
+				>{name}</a
+			>
+		{/snippet}
+    {@render link('/','Clipboard')}
+    {@render link('/dashboard','Dashboard')}
+    {@render link('/configuration','Configurations')}
 	</ul>
 </div>
