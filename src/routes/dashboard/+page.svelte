@@ -1,7 +1,5 @@
 <script>
-
-	import Dashboard from "$lib/components/dashboard.svelte";
-
+	import Dashboard from '$lib/components/dashboard.svelte';
 </script>
 
 <Dashboard />
