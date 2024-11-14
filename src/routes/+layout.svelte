@@ -6,6 +6,6 @@
 
 <Header />
 
-<main class="pt-[4.5rem]">
+<main class="pt-[4rem] h-screen">
 	{@render children()}
 </main>

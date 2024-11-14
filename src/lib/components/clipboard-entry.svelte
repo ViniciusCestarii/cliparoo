@@ -7,12 +7,14 @@
 	import ClipboardTypeBadge from './clipboard-type-badge.svelte';
 	import ClipboardWindowBadge from './clipboard-window-badge.svelte';
 	import { writeText } from '@tauri-apps/plugin-clipboard-manager';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import { cn } from '$lib/utils';
 
-	interface ClipboardEntryProps {
+	interface ClipboardEntryProps extends HTMLAttributes<HTMLElement> {
 		entry: ClipboardEntry;
 	}
 
-	let { entry }: ClipboardEntryProps = $props();
+	let { entry, class: className, ...props }: ClipboardEntryProps = $props();
 
 	async function handleEntryClick(text: string) {
 		await writeText(text);
@@ -26,7 +28,7 @@
 	let showCopiedIcon = $state(false);
 </script>
 
-<li class="relative">
+<div {...props} class={cn("relative", className)}>
 	<button
 		class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
 		onclick={() => handleEntryClick(entry.text)}
@@ -74,4 +76,4 @@
 			>
 		</div>
 	{/if}
-</li>
+</div>
