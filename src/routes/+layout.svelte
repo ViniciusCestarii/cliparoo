@@ -1,4 +1,5 @@
 <script lang="ts">
+	import NavDropdown from '$lib/components/nav-dropdown.svelte';
 	import ThemeToggle from '$lib/components/theme-toggle.svelte';
 	import '../app.css';
 	let { children } = $props();
@@ -9,8 +10,8 @@
 >
 	<h1 class="text-xl">Cliparoo</h1>
 
-	<div class="h-12 hidden xs:block">
-		<ThemeToggle />
+	<div class="h-12">
+		<NavDropdown />
 	</div>
 </header>
 

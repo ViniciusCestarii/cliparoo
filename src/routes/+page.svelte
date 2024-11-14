@@ -31,7 +31,6 @@
 	});
 </script>
 
-<Dashboard />
 <ul class="flex flex-col space-y-2 px-2">
 	{#each cs.clipboard as entry (entry.id)}
 		<ClipboardEntry {entry} />
