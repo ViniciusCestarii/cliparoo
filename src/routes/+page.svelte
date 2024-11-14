@@ -32,9 +32,9 @@
 </script>
 
 <div class="h-[calc(100vh-4rem)]">
-<VirtualList items={cs.clipboard} height="100%" getKey={(entry) => entry.id}>
-	{#snippet Children(entry)}
-		<ClipboardEntry {entry} class="m-2" />
-	{/snippet}
-</VirtualList>
+	<VirtualList items={cs.clipboard} height="100%" getKey={(entry) => entry.id}>
+		{#snippet Children(entry)}
+			<ClipboardEntry {entry} class="m-2" />
+		{/snippet}
+	</VirtualList>
 </div>
