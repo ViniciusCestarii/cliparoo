@@ -119,11 +119,6 @@
 		rows = contents.getElementsByTagName('svelte-virtual-list-row');
 		mounted = true;
 	});
-
-	onMount(() => {
-		rows = contents.getElementsByTagName('svelte-virtual-list-row');
-		mounted = true;
-	});
 </script>
 
 <svelte-virtual-list-viewport
