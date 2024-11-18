@@ -28,15 +28,15 @@
 		<ThemeToggle />
 		<div class="form-control">
 			<div class="divider text-sm">Show</div>
-			<label class="label cursor-pointer">
+			<label class="label cursor-pointer" title="Toggle window badge visibility">
 				<span class="label-text"><ClipboardWindowBadge window="Window" /></span>
 				<input type="checkbox" bind:checked={cs.showWindowBadge} class="toggle toggle-primary" />
 			</label>
-			<label class="label cursor-pointer">
+			<label class="label cursor-pointer" title="Toggle type badge visibility">
 				<span class="label-text"><ClipboardTypeBadge type="text" /></span>
 				<input type="checkbox" bind:checked={cs.showTypeBadge} class="toggle toggle-primary" />
 			</label>
-			<label class="label cursor-pointer">
+			<label class="label cursor-pointer" title="Toggle timestamp visibility">
 				<span class="label-text">Timestamp</span>
 				<input type="checkbox" bind:checked={cs.showTimestamp} class="toggle toggle-primary" />
 			</label>
