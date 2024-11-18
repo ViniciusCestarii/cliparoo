@@ -8,8 +8,7 @@ import { binarySearch } from './search';
 
 class CliparooState {
 	#state = $state<CliparooStateType>(loadStateFromStorage());
-	#firstEntry = $state(this.getFirstClipboardEntry());
-	#ignoreNext: null | string = null;
+	#ignoreNext = $state<null | string>(this.getFirstClipboardEntry()?.text ?? null);
 
 	get clipboard() {
 		return this.#state.clipboard;
@@ -33,7 +32,7 @@ class CliparooState {
 
 	addClipboardEntry(baseEntry: CreateClipboardEntry) {
 		// Prevent adding the same entry twice
-		if (baseEntry.text === this.#firstEntry?.text || baseEntry.text === this.#ignoreNext) {
+		if (baseEntry.text === this.#ignoreNext) {
 			return null;
 		}
 
@@ -50,7 +49,7 @@ class CliparooState {
 		);
 
 		this.#state.clipboard.unshift(newEntry);
-		this.#firstEntry = newEntry;
+		this.#ignoreNext = newEntry.text;
 
 		this._saveState();
 
@@ -66,7 +65,6 @@ class CliparooState {
 
 		if (index !== -1) {
 			this.#state.clipboard.splice(index, 1);
-			this.#firstEntry = this.getFirstClipboardEntry();
 			this._saveState();
 			info(`Entry with id ${id} deleted from clipboard`);
 		} else {
