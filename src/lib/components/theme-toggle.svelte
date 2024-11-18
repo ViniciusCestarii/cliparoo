@@ -3,7 +3,7 @@
 	import { themes } from '../../../tailwind.config';
 </script>
 
-<div class="dropdown mb-72">
+<div class="dropdown">
 	<div tabIndex={0} role="button" class="btn m-1 focus:ring-2 ring-base-content">
 		Theme
 		<svg

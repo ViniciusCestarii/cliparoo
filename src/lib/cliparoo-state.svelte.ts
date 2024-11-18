@@ -2,7 +2,8 @@ import { info } from '@tauri-apps/plugin-log';
 import type {
 	CliparooState as CliparooStateType,
 	ClipboardEntry,
-	CreateClipboardEntry
+	CreateClipboardEntry,
+	Theme
 } from './types';
 import { binarySearch } from './search';
 
@@ -15,11 +16,32 @@ class CliparooState {
 		return this.#state.clipboard;
 	}
 	get theme() {
-		return this.#state.theme;
+		return this.#state.config.theme;
 	}
-	set theme(value: CliparooStateType['theme']) {
-		this.#state.theme = value;
+	get showWindowBadge() {
+		return this.#state.config.showWindowBadge;
+	}
+	get showTypeBadge() {
+		return this.#state.config.showTypeBadge;
+	}
+	get showTimestamp() {
+		return this.#state.config.showTimestamp;
+	}
+	set theme(value: Theme) {
+		this.#state.config.theme = value;
 		document.documentElement.setAttribute('data-theme', value);
+		this._saveState();
+	}
+	set showWindowBadge(value: boolean) {
+		this.#state.config.showWindowBadge = value;
+		this._saveState();
+	}
+	set showTypeBadge(value: boolean) {
+		this.#state.config.showTypeBadge = value;
+		this._saveState();
+	}
+	set showTimestamp(value: boolean) {
+		this.#state.config.showTimestamp = value;
 		this._saveState();
 	}
 
@@ -77,10 +99,7 @@ class CliparooState {
 	}
 
 	reset() {
-		this.#state = {
-			...this.#state,
-			clipboard: []
-		};
+		this.#state = initialState;
 		this._saveState();
 	}
 
@@ -91,22 +110,9 @@ const STATE_KEY = 'cliparooState';
 
 const loadStateFromStorage = (): CliparooStateType => {
 	const storedState = localStorage.getItem(STATE_KEY);
-	const state = storedState
-		? JSON.parse(storedState)
-		: {
-				clipboard: [
-					{
-						id: 0,
-						text: 'Welcome to Cliparoo!',
-						timestamp: new Date().toISOString(),
-						type: 'text',
-						window: 'Super Big Window Title for Cliparoo test'
-					}
-				],
-				theme: 'dark'
-			};
+	const state: CliparooStateType = storedState ? JSON.parse(storedState) : initialState;
 
-	document.documentElement.setAttribute('data-theme', state.theme);
+	document.documentElement.setAttribute('data-theme', state.config.theme);
 
 	return state;
 };
@@ -121,6 +127,24 @@ const URL_REGEX =
 const getType = (text: ClipboardEntry['text']): ClipboardEntry['type'] => {
 	if (URL_REGEX.exec(text)) return 'url';
 	return 'text';
+};
+
+const initialState: CliparooStateType = {
+	clipboard: [
+		{
+			id: 0,
+			window: 'Cliparoo',
+			type: 'text',
+			text: 'Welcome to Cliparoo!',
+			timestamp: new Date().toISOString()
+		}
+	],
+	config: {
+		theme: 'dark',
+		showTimestamp: true,
+		showTypeBadge: true,
+		showWindowBadge: true
+	}
 };
 
 const cs = new CliparooState();
