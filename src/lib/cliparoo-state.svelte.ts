@@ -110,9 +110,9 @@ const STATE_KEY = 'cliparooState';
 
 const loadStateFromStorage = (): CliparooStateType => {
 	const storedState = localStorage.getItem(STATE_KEY);
-	const state = storedState ? JSON.parse(storedState) : initialState;
+	const state: CliparooStateType = storedState ? JSON.parse(storedState) : initialState;
 
-	document.documentElement.setAttribute('data-theme', state.theme);
+	document.documentElement.setAttribute('data-theme', state.config.theme);
 
 	return state;
 };

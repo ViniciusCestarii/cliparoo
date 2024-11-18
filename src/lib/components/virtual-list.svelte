@@ -31,21 +31,25 @@
 			return { id: getKey?.(data) ?? i + start, data };
 		})
 	);
+
 	// whenever `items` changes, invalidate the current heightmap
-	$effect(() => {
-		if (mounted) {
-			refresh(items, viewport_height, itemHeight);
-		}
-	});
+	// $effect(() => {
+	// 	if (mounted) {
+	// 		refresh(items, viewport_height, itemHeight);
+	// 	}
+	// });
 
 	// simple way to scroll to the top when the list grows
 	let previousItemsLength = $state(0);
 
 	$effect(() => {
-		if (items.length > previousItemsLength) {
+		if (items.length > previousItemsLength && mounted) {
 			viewport.scrollTo({ top: 0 });
 		}
-		previousItemsLength = items.length;
+
+		if (mounted) {
+			refresh(items, viewport_height, itemHeight);
+		}
 	});
 
 	async function refresh(items: Array<any>, viewport_height: number, itemHeight?: number) {
