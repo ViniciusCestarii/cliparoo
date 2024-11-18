@@ -41,7 +41,7 @@ class CliparooState {
 		const timestamp = new Date().toISOString();
 		const type: ClipboardEntry['type'] = getType(baseEntry.text);
 		const id = new Date(timestamp).getTime();
-		const window = this.#firstSessionCopy ? "Unknown" : baseEntry.window;
+		const window = this.#firstSessionCopy ? 'Unknown' : baseEntry.window;
 
 		const newEntry = { ...baseEntry, window, id, timestamp, type };
 
