@@ -4,6 +4,7 @@
 	import ThemeToggle from '$lib/components/theme-toggle.svelte';
 	import ClipboardWindowBadge from '$lib/components/clipboard-window-badge.svelte';
 	import ClipboardTypeBadge from '$lib/components/clipboard-type-badge.svelte';
+	import cs from '$lib/cliparoo-state.svelte';
 
 	const entry1: ClipboardEntryType = {
 		id: Infinity,
@@ -29,15 +30,15 @@
 			<div class="divider text-sm">Show</div>
 			<label class="label cursor-pointer">
 				<span class="label-text"><ClipboardWindowBadge window="Window" /></span>
-				<input type="checkbox" class="toggle toggle-primary" />
+				<input type="checkbox" bind:checked={cs.showWindowBadge} class="toggle toggle-primary" />
 			</label>
 			<label class="label cursor-pointer">
 				<span class="label-text"><ClipboardTypeBadge type="text" /></span>
-				<input type="checkbox" class="toggle toggle-primary" />
+				<input type="checkbox" bind:checked={cs.showTypeBadge} class="toggle toggle-primary" />
 			</label>
 			<label class="label cursor-pointer">
-				<span class="label-text">Time</span>
-				<input type="checkbox" class="toggle toggle-primary" />
+				<span class="label-text">Timestamp</span>
+				<input type="checkbox" bind:checked={cs.showTimestamp} class="toggle toggle-primary" />
 			</label>
 		</div>
 	</div>

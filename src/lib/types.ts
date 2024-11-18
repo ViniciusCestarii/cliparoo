@@ -9,11 +9,18 @@ export type ClipboardEntry = {
 	timestamp: string;
 };
 
+export type Theme = typeof themes[number];
+
 export type CreateClipboardEntry = Omit<ClipboardEntry, 'timestamp' | 'type' | 'id'>;
 
 export type CliparooState = {
 	clipboard: ClipboardEntry[];
-	theme: (typeof themes)[number];
+	config: {
+		theme: Theme;
+		showWindowBadge: boolean;
+		showTypeBadge: boolean;
+		showTimestamp: boolean;
+	}
 };
 
 export type Props<T extends Component<any, any, any>> = Parameters<T>[1];

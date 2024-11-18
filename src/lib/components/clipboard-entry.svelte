@@ -9,6 +9,7 @@
 	import { writeText } from '@tauri-apps/plugin-clipboard-manager';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils';
+	import { show } from '@tauri-apps/api/app';
 
 	interface ClipboardEntryProps extends HTMLAttributes<HTMLElement> {
 		entry: ClipboardEntry;
@@ -38,12 +39,13 @@
 		class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
 		onclick={() => handleEntryClick(entry.text)}
 	>
-		<ClipboardWindowBadge
-			window={entry.window}
-			{...components?.WindowBadge}
-			class={cn('w-[calc(100%-2.25rem)]', components?.WindowBadge?.class)}
-		/>
-		<!--- add ability to hide --->
+		{#if cs.showWindowBadge}
+			<ClipboardWindowBadge
+				window={entry.window}
+				{...components?.WindowBadge}
+				class={cn('w-[calc(100%-2.25rem)]', components?.WindowBadge?.class)}
+			/>
+		{/if}
 		<p
 			style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
 			class="break-all text-ellipsis overflow-hidden text-sm pl-1"
@@ -51,11 +53,13 @@
 			{entry.text}
 		</p>
 		<div class="card-actions justify-between items-center">
-			<ClipboardTypeBadge type={entry.type} {...components?.TypeBadge} />
-			<!--- add ability to hide --->
+			{#if cs.showTypeBadge}
+				<ClipboardTypeBadge type={entry.type} {...components?.TypeBadge} />
+			{/if}
 
-			<time class="text-sm">{formatDate(entry.timestamp)}</time>
-			<!--- add ability to hide --->
+			{#if cs.showTimestamp}
+				<time class="text-sm">{formatDate(entry.timestamp)}</time>
+			{/if}
 		</div>
 	</button>
 	<ClipboardDropdownMenu
