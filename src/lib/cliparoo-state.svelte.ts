@@ -122,10 +122,11 @@ const saveStateToStorage = (state: CliparooStateType) => {
 };
 
 const URL_REGEX =
-	/https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}/;
+	/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
 const getType = (text: ClipboardEntry['text']): ClipboardEntry['type'] => {
-	if (URL_REGEX.exec(text)) return 'url';
+	const cleanText = text.trim();
+	if (URL_REGEX.exec(cleanText)) return 'url';
 	return 'text';
 };
 
