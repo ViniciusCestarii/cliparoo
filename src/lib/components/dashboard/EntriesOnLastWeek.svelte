@@ -1,10 +1,20 @@
 <script lang="ts">
-	import { BarElement, Chart, Legend, Tooltip, type ChartData } from 'chart.js';
+	import {
+		BarElement,
+		Chart,
+		CategoryScale,
+		LinearScale,
+		Legend,
+		Tooltip,
+		type ChartData
+	} from 'chart.js';
 	import cs from '$lib/cliparoo-state.svelte';
 	import { getColors } from '$lib/theme';
 	import BarChart from '../charts/bar.svelte';
+	import { cn } from '$lib/utils';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	Chart.register(Tooltip, Legend, BarElement);
+	Chart.register(Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 	const oneWeekAgo = new Date();
 	oneWeekAgo.setDate(oneWeekAgo.getDate() - 7); // Get the date one week ago
@@ -51,9 +61,13 @@
 			borderColor: colorsArray[index]
 		}))
 	});
+
+	interface EntriesOnLastWeekProps extends HTMLAttributes<HTMLElement> {}
+
+	let { class:className, ...props }: EntriesOnLastWeekProps = $props();
 </script>
 
-<div class="relative w-full col-span-2">
+<div {...props} class={cn('relative w-full aspect-video', className)}>
 	<BarChart
 		{data}
 		options={{

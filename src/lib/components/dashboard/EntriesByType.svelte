@@ -3,6 +3,8 @@
 	import cs from '$lib/cliparoo-state.svelte';
 	import { getColors } from '$lib/theme';
 	import Doughnut from '../charts/doughnut.svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import { cn } from '$lib/utils';
 
 	Chart.register(Tooltip, Legend, ArcElement);
 
@@ -37,8 +39,12 @@
 			}
 		]
 	});
+
+	interface EntriesByType extends HTMLAttributes<HTMLElement> {}
+
+	let { class: className, ...props }: EntriesByType = $props();
 </script>
 
-<div class="relative w-full aspect-square">
+<div {...props} class={cn('relative w-full aspect-square', className)}>
 	<Doughnut {data} options={{ responsive: true }} />
 </div>
