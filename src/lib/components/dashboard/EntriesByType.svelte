@@ -20,7 +20,7 @@
 		colors = getColors();
 	};
 
-  let colorsArray = $derived([colors.primary, colors.accent]);
+	let colorsArray = $derived([colors.primary, colors.accent]);
 
 	const observer = new MutationObserver(updateColors);
 	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
@@ -33,7 +33,7 @@
 				data: typesSum,
 				backgroundColor: colorsArray,
 				borderWidth: 2,
-				borderColor: colorsArray,
+				borderColor: colorsArray
 			}
 		]
 	});
