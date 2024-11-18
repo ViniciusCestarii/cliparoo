@@ -147,19 +147,3 @@
 		{/each}
 	</svelte-virtual-list-contents>
 </svelte-virtual-list-viewport>
-
-<style>
-	svelte-virtual-list-viewport {
-		position: relative;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-		display: block;
-	}
-	svelte-virtual-list-contents,
-	svelte-virtual-list-row {
-		display: block;
-	}
-	svelte-virtual-list-row {
-		overflow: hidden;
-	}
-</style>
