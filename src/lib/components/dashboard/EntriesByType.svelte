@@ -1,11 +1,5 @@
 <script lang="ts">
-	import {
-		ArcElement,
-		Chart,
-		Legend,
-		Tooltip,
-		type ChartData
-	} from 'chart.js';
+	import { ArcElement, Chart, Legend, Tooltip, type ChartData } from 'chart.js';
 	import cs from '$lib/cliparoo-state.svelte';
 	import { getColors } from '$lib/theme';
 	import Doughnut from '../charts/doughnut.svelte';
