@@ -17,7 +17,7 @@
 	</div>
 
 	<ul
-		class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl max-h-[calc(100vh-12rem)] overflow-y-auto"
+		class="dropdown-content bg-base-300 flex flex-col gap-2 rounded-box z-[1] w-52 p-2 shadow-2xl max-h-[calc(100vh-12rem)] overflow-y-auto"
 	>
 		{#snippet link(href: string, name: string)}
 			<a
