@@ -4,7 +4,7 @@
 	import { invokeGetWindowName } from '$lib';
 	import { readText } from '@tauri-apps/plugin-clipboard-manager';
 	import cs from '$lib/cliparoo-state.svelte';
-	
+
 	let { children } = $props();
 
 	// fix:
