@@ -27,6 +27,9 @@ class CliparooState {
 	get showTimestamp() {
 		return this.#state.config.showTimestamp;
 	}
+	get removeMotion() {
+		return this.#state.config.removeMotion;
+	}
 	set theme(value: Theme) {
 		this.#state.config.theme = value;
 		document.documentElement.setAttribute('data-theme', value);
@@ -42,6 +45,11 @@ class CliparooState {
 	}
 	set showTimestamp(value: boolean) {
 		this.#state.config.showTimestamp = value;
+		this._saveState();
+	}
+	set removeMotion(value: boolean) {
+		this.#state.config.removeMotion = value;
+		document.documentElement.classList.toggle('remove-motion', value);
 		this._saveState();
 	}
 
@@ -113,6 +121,7 @@ const loadStateFromStorage = (): CliparooStateType => {
 	const state: CliparooStateType = storedState ? JSON.parse(storedState) : initialState;
 
 	document.documentElement.setAttribute('data-theme', state.config.theme);
+	document.documentElement.classList.toggle('remove-motion', state.config.removeMotion);
 
 	return state;
 };
@@ -144,7 +153,8 @@ const initialState: CliparooStateType = {
 		theme: 'dark',
 		showTimestamp: true,
 		showTypeBadge: true,
-		showWindowBadge: true
+		showWindowBadge: true,
+		removeMotion: false
 	}
 };
 

@@ -41,6 +41,13 @@
 				<input type="checkbox" bind:checked={cs.showTimestamp} class="toggle toggle-primary" />
 			</label>
 		</div>
+		<div class="form-control">
+			<div class="divider text-sm">Acessibility</div>
+			<label class="label cursor-pointer" title="Toggle remove motion">
+				<span class="label-text">Remove motion</span>
+				<input type="checkbox" bind:checked={cs.removeMotion} class="toggle toggle-primary" />
+			</label>
+		</div>
 	</div>
 
 	<div>

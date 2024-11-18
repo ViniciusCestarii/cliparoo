@@ -20,6 +20,7 @@ export type CliparooState = {
 		showWindowBadge: boolean;
 		showTypeBadge: boolean;
 		showTimestamp: boolean;
+		removeMotion: boolean;
 	};
 };
 

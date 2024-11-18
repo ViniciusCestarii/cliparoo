@@ -2,6 +2,19 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.remove-motion button {
+	animation-duration: 0.001ms !important;
+	transition-duration: 0.001ms !important;
+	animation-iteration-count: 1 !important;
+	background-image: none !important;}
+	
+.remove-motion input {
+	animation-duration: 0.001ms !important;
+	transition-duration: 0.001ms !important;
+	animation-iteration-count: 1 !important;
+	background-image: none !important;
+}
+
 input[type='radio'] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
