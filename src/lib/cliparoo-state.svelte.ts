@@ -9,6 +9,7 @@ import { binarySearch } from './search';
 class CliparooState {
 	#state = $state<CliparooStateType>(loadStateFromStorage());
 	#ignoreNext = $state<null | string>(this.getFirstClipboardEntry()?.text ?? null);
+	#firstSessionCopy = $state<boolean>(true);
 
 	get clipboard() {
 		return this.#state.clipboard;
@@ -33,14 +34,16 @@ class CliparooState {
 	addClipboardEntry(baseEntry: CreateClipboardEntry) {
 		// Prevent adding the same entry twice
 		if (baseEntry.text === this.#ignoreNext) {
+			this.#firstSessionCopy = false;
 			return null;
 		}
 
 		const timestamp = new Date().toISOString();
 		const type: ClipboardEntry['type'] = getType(baseEntry.text);
 		const id = new Date(timestamp).getTime();
+		const window = this.#firstSessionCopy ? "Unknown" : baseEntry.window;
 
-		const newEntry = { ...baseEntry, id, timestamp, type };
+		const newEntry = { ...baseEntry, window, id, timestamp, type };
 
 		info(
 			`Pushing to clipboard ${Object.entries(newEntry)
@@ -50,6 +53,7 @@ class CliparooState {
 
 		this.#state.clipboard.unshift(newEntry);
 		this.#ignoreNext = newEntry.text;
+		this.#firstSessionCopy = false;
 
 		this._saveState();
 
