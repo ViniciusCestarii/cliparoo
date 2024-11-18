@@ -110,9 +110,7 @@ const STATE_KEY = 'cliparooState';
 
 const loadStateFromStorage = (): CliparooStateType => {
 	const storedState = localStorage.getItem(STATE_KEY);
-	const state = storedState
-		? JSON.parse(storedState)
-		: initialState
+	const state = storedState ? JSON.parse(storedState) : initialState;
 
 	document.documentElement.setAttribute('data-theme', state.theme);
 
@@ -132,13 +130,15 @@ const getType = (text: ClipboardEntry['text']): ClipboardEntry['type'] => {
 };
 
 const initialState: CliparooStateType = {
-	clipboard: [{
-		id: 0,
-		window: 'Cliparoo',
-		type: 'text',
-		text: 'Welcome to Cliparoo!',
-		timestamp: new Date().toISOString()
-	}],
+	clipboard: [
+		{
+			id: 0,
+			window: 'Cliparoo',
+			type: 'text',
+			text: 'Welcome to Cliparoo!',
+			timestamp: new Date().toISOString()
+		}
+	],
 	config: {
 		theme: 'dark',
 		showTimestamp: true,
