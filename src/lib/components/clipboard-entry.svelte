@@ -33,7 +33,7 @@
 	let showCopiedIcon = $state(false);
 </script>
 
-<div {...props} class={cn('relative', className)}>
+<div {...props} class={cn('relative m-2', className)}>
 	<button
 		class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
 		onclick={() => handleEntryClick(entry.text)}
