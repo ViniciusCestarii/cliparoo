@@ -1,4 +1,3 @@
-import { info } from '@tauri-apps/plugin-log';
 import { formatRgb, convertOkhslToOklab } from 'culori';
 
 function parseStringToHSL(input: string) {

@@ -12,7 +12,7 @@
 	} from 'chart.js';
 	import Doughnut from './charts/doughnut.svelte';
 	import cs from '$lib/cliparoo-state.svelte';
-	import { getColors } from './use-theme-colors.svelte';
+	import { getColors } from '$lib/theme';
 
 	Chart.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement);
 
