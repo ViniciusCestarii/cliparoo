@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import type { HTMLAttributes } from 'svelte/elements';
 	import cs from '$lib/cliparoo-state.svelte';
 	import type { ClipboardEntry } from '$lib/types';
+	import type { HTMLButtonAttributes, SvelteHTMLElements } from 'svelte/elements';
 
-	interface DropdownMenuProps extends HTMLAttributes<HTMLElement> {
+	type HTMLDivAttributes = SvelteHTMLElements['div'];
+
+	interface DropdownMenuProps extends HTMLDivAttributes {
 		entryId: ClipboardEntry['id'];
-		buttonProps?: HTMLAttributes<HTMLButtonElement>;
+		buttonProps?: HTMLButtonAttributes;
 	}
 	let { class: className, entryId, buttonProps, ...props }: DropdownMenuProps = $props();
 </script>

@@ -1,3 +1,4 @@
+import type { Component } from 'svelte';
 import { themes } from '../../tailwind.config';
 
 export type ClipboardEntry = {
@@ -14,3 +15,5 @@ export type CliparooState = {
 	clipboard: ClipboardEntry[];
 	theme: (typeof themes)[number];
 };
+
+export type Props<T extends Component<any, any, any>> = Parameters<T>[1];

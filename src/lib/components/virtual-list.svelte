@@ -1,5 +1,4 @@
 <script lang="ts" generics="T">
-	import { info } from '@tauri-apps/plugin-log';
 	import { onMount, tick, type Snippet } from 'svelte';
 	const {
 		items,
@@ -37,6 +36,16 @@
 		if (mounted) {
 			refresh(items, viewport_height, itemHeight);
 		}
+	});
+
+	// simple way to scroll to the top when the list grows
+	let previousItemsLength = $state(0);
+
+	$effect(() => {
+		if (items.length > previousItemsLength) {
+			viewport.scrollTo({ top: 0 });
+		}
+		previousItemsLength = items.length;
 	});
 
 	async function refresh(items: Array<any>, viewport_height: number, itemHeight?: number) {

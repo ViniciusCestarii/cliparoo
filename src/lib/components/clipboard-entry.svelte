@@ -1,7 +1,7 @@
 <script lang="ts">
 	import cs from '$lib/cliparoo-state.svelte';
 	import { formatDate } from '$lib/format';
-	import type { ClipboardEntry } from '$lib/types';
+	import type { ClipboardEntry, Props } from '$lib/types';
 	import { fly } from 'svelte/transition';
 	import ClipboardDropdownMenu from './clipboard-dropdown-menu.svelte';
 	import ClipboardTypeBadge from './clipboard-type-badge.svelte';
@@ -12,9 +12,14 @@
 
 	interface ClipboardEntryProps extends HTMLAttributes<HTMLElement> {
 		entry: ClipboardEntry;
+		components?: {
+			DropdownMenu?: Partial<Props<typeof ClipboardDropdownMenu>>;
+			TypeBadge?: Partial<Props<typeof ClipboardTypeBadge>>;
+			WindowBadge?: Partial<Props<typeof ClipboardWindowBadge>>;
+		};
 	}
 
-	let { entry, class: className, ...props }: ClipboardEntryProps = $props();
+	let { entry, class: className, components, ...props }: ClipboardEntryProps = $props();
 
 	async function handleEntryClick(text: string) {
 		await writeText(text);
@@ -33,7 +38,11 @@
 		class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
 		onclick={() => handleEntryClick(entry.text)}
 	>
-		<ClipboardWindowBadge class="w-[calc(100%-2.25rem)]" window={entry.window} />
+		<ClipboardWindowBadge
+			window={entry.window}
+			{...components?.WindowBadge}
+			class={cn('w-[calc(100%-2.25rem)]', components?.WindowBadge?.class)}
+		/>
 		<!--- add ability to hide --->
 		<p
 			style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
@@ -42,7 +51,7 @@
 			{entry.text}
 		</p>
 		<div class="card-actions justify-between items-center">
-			<ClipboardTypeBadge type={entry.type} />
+			<ClipboardTypeBadge type={entry.type} {...components?.TypeBadge} />
 			<!--- add ability to hide --->
 
 			<time class="text-sm">{formatDate(entry.timestamp)}</time>
@@ -50,11 +59,16 @@
 		</div>
 	</button>
 	<ClipboardDropdownMenu
-		class="absolute top-[calc(0.5rem+2px)] right-2 p-0"
-		buttonProps={{
-			class: 'bg-transparent border-none hover:border focus:ring-2 ring-base-content'
-		}}
 		entryId={entry.id}
+		{...components?.DropdownMenu}
+		class={cn('absolute top-[calc(0.5rem+2px)] right-2 p-0', components?.DropdownMenu?.class)}
+		buttonProps={{
+			...components?.DropdownMenu?.buttonProps,
+			class: cn(
+				'bg-transparent border-none hover:border focus:ring-2 ring-base-content',
+				components?.DropdownMenu?.buttonProps?.class
+			)
+		}}
 	/>
 	{#if showCopiedIcon}
 		<div
