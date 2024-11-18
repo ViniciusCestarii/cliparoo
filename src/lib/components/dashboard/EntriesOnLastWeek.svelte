@@ -64,7 +64,7 @@
 
 	interface EntriesOnLastWeekProps extends HTMLAttributes<HTMLElement> {}
 
-	let { class:className, ...props }: EntriesOnLastWeekProps = $props();
+	let { class: className, ...props }: EntriesOnLastWeekProps = $props();
 </script>
 
 <div {...props} class={cn('relative w-full aspect-video', className)}>
