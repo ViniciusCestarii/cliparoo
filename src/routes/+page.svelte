@@ -2,7 +2,7 @@
 	import { invokeGetWindowName } from '$lib';
 	import cs from '$lib/cliparoo-state.svelte';
 	import ClipboardEntry from '$lib/components/clipboard-entry.svelte';
-	import Dashboard from '$lib/components/dashboard.svelte';
+	import VirtualList from '$lib/components/virtual-list.svelte';
 	import { readText } from '@tauri-apps/plugin-clipboard-manager';
 
 	// fix:
@@ -31,8 +31,10 @@
 	});
 </script>
 
-<ul class="flex flex-col space-y-2 px-2">
-	{#each cs.clipboard as entry (entry.id)}
-		<ClipboardEntry {entry} />
-	{/each}
-</ul>
+<div class="h-[calc(100vh-4rem)]">
+	<VirtualList items={cs.clipboard} height="100%" getKey={(entry) => entry.id}>
+		{#snippet Children(entry)}
+			<ClipboardEntry {entry} class="m-2" />
+		{/snippet}
+	</VirtualList>
+</div>
