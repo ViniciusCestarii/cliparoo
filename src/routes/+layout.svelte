@@ -41,15 +41,15 @@
 					readImage(), // This should return a Blob or Image object
 					invokeGetWindowName()
 				]);
-				
-				const blob = new Blob([await clipboardImage.rgba()], { type: 'image' })
+
+				const blob = new Blob([await clipboardImage.rgba()], { type: 'image' });
 
 				const imageBase64 = await toBase64(blob); // Convert the image to base64
 
 				// Add clipboard entry with base64 image
 				const createdEntry = cs.addClipboardEntry({
 					text: imageBase64,
-					window: currentWindowName,
+					window: currentWindowName
 				});
 
 				if (createdEntry) {
