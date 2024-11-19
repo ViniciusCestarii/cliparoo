@@ -21,7 +21,6 @@
 				text: clipboardContent,
 				window: currentWindowName
 			});
-
 		}, 200);
 
 		return () => {
