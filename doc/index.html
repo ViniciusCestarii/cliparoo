@@ -1,1463 +1,943 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cliparoo - Your Smart Clipboard Manager</title>
-		<meta
-			name="description"
-			content="A smart clipboard manager that helps you organize, access, and reuse your clipboard history with ease. Enhance productivity with seamless copy-paste management and quick text insertion features."
-		/>
-		<meta
-			name="keywords"
-			content="Cliparoo, clipboard manager, clipboard history, Tauri app, productivity tool, clipboard enhancer, copy-paste management, text snippets, clipboard organizer, Área de Transferência, Windows clipboard alternative"
-		/>
-		<meta name="author" content="Vinicius Cestari" />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://ViniciusCestarii.github.io/Cliparoo/" />
-		<meta property="og:title" content="Cliparoo - Your Smart Clipboard Manager" />
-		<meta
-			property="og:description"
-			content="A smart clipboard manager that helps you organize, access, and reuse your clipboard history with ease. Enhance productivity with seamless copy-paste management and quick text insertion features."
-		/>
-		<meta
-			property="og:image"
-			content="https://github.com/ViniciusCestarii/cliparoo/raw/main/app-icon.png"
-		/>
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:creator" content="@VCestarii" />
-		<meta name="twitter:title" content="Cliparoo - Your Smart Clipboard Manager" />
-		<meta
-			name="twitter:description"
-			content="A smart clipboard manager that helps you organize, access, and reuse your clipboard history with ease. Enhance productivity with seamless copy-paste management and quick text insertion features."
-		/>
-		<meta
-			name="twitter:image"
-			content="https://github.com/ViniciusCestarii/cliparoo/raw/main/app-icon.png"
-		/>
-		<link rel="icon" type="image/png" href="favicon.ico" />
-		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css"
-			rel="stylesheet"
-			type="text/css"
-		/>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<link rel="stylesheet" href="styles.css" />
-		<link
-			rel="preload"
-			href="https://github.com/ViniciusCestarii/cliparoo/raw/main/app-icon.png"
-			as="image"
-		/>
-		<link
-			rel="preload"
-			href="https://github.com/ViniciusCestarii/cliparoo/raw/main/screenshot.png"
-			as="image"
-		/>
-	</head>
 
-	<body>
-		<header class="sticky top-0 backdrop-blur-md bg-base-100/70 border-b border-base-300 z-10">
-			<nav class="navbar justify-between">
-				<div class="flex items-center space-x-1">
-					<img
-						src="https://github.com/ViniciusCestarii/cliparoo/raw/main/static/cliparoo.png"
-						alt="Cliparoo Logo"
-						class="size-10"
-					/>
-					<span class="text-lg">Cliparoo</span>
-				</div>
-				<ul class="flex space-x-2">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#features">Features</a></li>
-					<li><a href="#download">Download</a></li>
-					<li><a href="#faq">FAQ</a></li>
-					<li>
-						<button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-							<span class="theme-icon">🌙</span>
-						</button>
-					</li>
-				</ul>
-			</nav>
-		</header>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Cliparoo - Your Smart Clipboard Manager</title>
+	<meta name="description"
+		content="A smart clipboard manager that helps you organize, access, and reuse your clipboard history with ease. Enhance productivity with seamless copy-paste management and quick text insertion features." />
+	<meta name="keywords"
+		content="Cliparoo, clipboard manager, clipboard history, Tauri app, productivity tool, clipboard enhancer, copy-paste management, text snippets, clipboard organizer, Área de Transferência, Windows clipboard alternative" />
+	<meta name="author" content="Vinicius Cestari" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://ViniciusCestarii.github.io/Cliparoo/" />
+	<meta property="og:title" content="Cliparoo - Your Smart Clipboard Manager" />
+	<meta property="og:description"
+		content="A smart clipboard manager that helps you organize, access, and reuse your clipboard history with ease. Enhance productivity with seamless copy-paste management and quick text insertion features." />
+	<meta property="og:image" content="https://github.com/ViniciusCestarii/cliparoo/raw/main/app-icon.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@VCestarii" />
+	<meta name="twitter:title" content="Cliparoo - Your Smart Clipboard Manager" />
+	<meta name="twitter:description"
+		content="A smart clipboard manager that helps you organize, access, and reuse your clipboard history with ease. Enhance productivity with seamless copy-paste management and quick text insertion features." />
+	<meta name="twitter:image" content="https://github.com/ViniciusCestarii/cliparoo/raw/main/app-icon.png" />
+	<link rel="icon" type="image/png" href="favicon.ico" />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="styles.css" />
+	<link rel="preload" href="https://github.com/ViniciusCestarii/cliparoo/raw/main/app-icon.png" as="image" />
+	<link rel="preload" href="https://github.com/ViniciusCestarii/cliparoo/raw/main/screenshot.png" as="image" />
+</head>
 
-		<main>
-			<section id="home" class="hero bg-base-200 min-h-screen">
-				<div class="hero-content">Hero</div>
-			</section>
+<body>
+	<header class="sticky top-0 backdrop-blur-md bg-base-100/70 border-b border-base-300 z-10">
+		<nav class="navbar justify-between">
+			<div class="flex items-center space-x-1">
+				<img src="https://github.com/ViniciusCestarii/cliparoo/raw/main/static/cliparoo.png" alt="Cliparoo Logo"
+					class="size-10" />
+				<span class="text-lg">Cliparoo</span>
+			</div>
+			<ul class="flex space-x-2">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#download">Download</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li>
+					<button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+						<span class="theme-icon">🌙</span>
+					</button>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-			<section id="features">
-				<h2>Why Use Cliparoo?</h2>
+	<main>
+		<section id="home" class="hero bg-base-200 min-h-screen">
+			<div class="hero-content">Hero</div>
+		</section>
+
+		<section id="features">
+			<h2>Why Use Cliparoo?</h2>
+			<div class="rounded-box grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
 				<div
-					class="rounded-box grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-				>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="light"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="light"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">light</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="light">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="light">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">light</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent !outline-base-content"
-						data-act-class="!outline-base-content"
-						data-set-theme="dark"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="dark"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">dark</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="cupcake"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="cupcake"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">cupcake</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="bumblebee"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="bumblebee"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">bumblebee</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="emerald"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="emerald"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">emerald</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="corporate"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="corporate"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">corporate</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="synthwave"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="synthwave"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">synthwave</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="retro"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="retro"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">retro</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="cyberpunk"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="cyberpunk"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">cyberpunk</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="valentine"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="valentine"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">valentine</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="halloween"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="halloween"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">halloween</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="garden"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="garden"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">garden</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="forest"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="forest"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">forest</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="aqua"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="aqua"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">aqua</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="lofi"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="lofi"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">lofi</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="pastel"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="pastel"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">pastel</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="fantasy"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="fantasy"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">fantasy</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="wireframe"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="wireframe"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">wireframe</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="black"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="black"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">black</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="luxury"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="luxury"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">luxury</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="dracula"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="dracula"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">dracula</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="cmyk"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="cmyk"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">cmyk</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="autumn"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="autumn"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">autumn</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="business"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="business"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">business</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="acid"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="acid"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">acid</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="lemonade"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="lemonade"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">lemonade</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="night"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="night"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">night</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="coffee"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="coffee"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">coffee</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="winter"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="winter"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">winter</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="dim"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="dim"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">dim</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="nord"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="nord"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">nord</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div
-						class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
-						data-act-class="!outline-base-content"
-						data-set-theme="sunset"
-					>
-						<div
-							class="bg-base-100 text-base-content w-full cursor-pointer font-sans"
-							data-theme="sunset"
-						>
-							<div class="grid grid-cols-5 grid-rows-3">
-								<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
-								<div class="bg-base-300 col-start-1 row-start-3"></div>
-								<div
-									class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2"
-								>
-									<div class="font-bold">sunset</div>
-									<div class="flex flex-wrap gap-1">
-										<div
-											class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-primary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-secondary-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-accent-content text-sm font-bold">A</div>
-										</div>
-										<div
-											class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6"
-										>
-											<div class="text-neutral-content text-sm font-bold">A</div>
-										</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div id="button-preview" class="py-12 mt-6 flex flex-col rounded-btn mx-2">
-					<div class="relative m-2">
-						<button
-							class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
-						>
-							<span class="badge flex max-w-fit justify-start gap-1 w-[calc(100%-2.25rem)]"
-								><span class="text-ellipsis whitespace-nowrap overflow-hidden">Cliparoo</span>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									xmlns:xlink="http://www.w3.org/1999/xlink"
-									version="1.1"
-									viewBox="0 0 24 24"
-									xml:space="preserve"
-									fill="currentColor"
-									class="h-4 w-4"
-								>
-									<defs></defs>
-									<g transform="matrix(0.0176 0 0 0.0176 12.0149 12.0149)">
-										<g vector-effect="non-scaling-stroke">
-											<g transform="matrix(0.1333 0 0 -0.1333 48.9436 39.8414)">
-												<path
-													style="
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent !outline-base-content"
+					data-act-class="!outline-base-content" data-set-theme="dark">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="dark">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">dark</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="cupcake">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="cupcake">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">cupcake</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="bumblebee">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="bumblebee">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">bumblebee</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="emerald">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="emerald">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">emerald</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="corporate">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="corporate">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">corporate</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="synthwave">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="synthwave">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">synthwave</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="retro">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="retro">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">retro</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="cyberpunk">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="cyberpunk">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">cyberpunk</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="valentine">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="valentine">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">valentine</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="halloween">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="halloween">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">halloween</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="garden">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="garden">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">garden</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="forest">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="forest">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">forest</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="aqua">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="aqua">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">aqua</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="lofi">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="lofi">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">lofi</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="pastel">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="pastel">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">pastel</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="fantasy">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="fantasy">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">fantasy</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="wireframe">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="wireframe">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">wireframe</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="black">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="black">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">black</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="luxury">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="luxury">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">luxury</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="dracula">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="dracula">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">dracula</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="cmyk">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="cmyk">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">cmyk</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="autumn">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="autumn">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">autumn</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="business">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="business">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">business</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="acid">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="acid">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">acid</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="lemonade">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="lemonade">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">lemonade</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="night">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="night">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">night</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="coffee">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="coffee">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">coffee</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="winter">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="winter">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">winter</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="dim">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="dim">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">dim</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="nord">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="nord">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">nord</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-base-content/20 hover:border-base-content/40 overflow-hidden rounded-lg border outline outline-2 outline-offset-2 outline-transparent"
+					data-act-class="!outline-base-content" data-set-theme="sunset">
+					<div class="bg-base-100 text-base-content w-full cursor-pointer font-sans" data-theme="sunset">
+						<div class="grid grid-cols-5 grid-rows-3">
+							<div class="bg-base-200 col-start-1 row-span-2 row-start-1"></div>
+							<div class="bg-base-300 col-start-1 row-start-3"></div>
+							<div class="bg-base-100 col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 p-2">
+								<div class="font-bold">sunset</div>
+								<div class="flex flex-wrap gap-1">
+									<div class="bg-primary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-primary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-secondary flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-secondary-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-accent flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-accent-content text-sm font-bold">A</div>
+									</div>
+									<div class="bg-neutral flex aspect-square w-5 items-center justify-center rounded lg:w-6">
+										<div class="text-neutral-content text-sm font-bold">A</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="button-preview" class="py-12 mt-6 flex flex-col rounded-btn mx-2">
+				<div class="relative m-2">
+					<button class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start">
+						<span class="badge flex max-w-fit justify-start gap-1 w-[calc(100%-2.25rem)]"><span
+								class="text-ellipsis whitespace-nowrap overflow-hidden">Cliparoo</span>
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+								viewBox="0 0 24 24" xml:space="preserve" fill="currentColor" class="h-4 w-4">
+								<defs></defs>
+								<g transform="matrix(0.0176 0 0 0.0176 12.0149 12.0149)">
+									<g vector-effect="non-scaling-stroke">
+										<g transform="matrix(0.1333 0 0 -0.1333 48.9436 39.8414)">
+											<path style="
 														stroke: none;
 														stroke-width: 1;
 														stroke-dasharray: none;
@@ -1469,310 +949,226 @@
 														font-file-url: none;
 														fill-rule: nonzero;
 														opacity: 1;
-													"
-													transform=" translate(-5488.2135, -4819.9841)"
-													d="M 4755 9611 c -104 -50 -195 -145 -355 -370 c -177 -250 -311 -519 -405 -812 c -77 -238 -111 -388 -142 -629 c -22 -169 -25 -606 -5 -750 c 33 -234 85 -462 144 -627 c 27 -74 24 -80 -74 -129 c -152 -77 -509 -328 -753 -530 c -182 -150 -540 -422 -673 -510 c -100 -66 -260 -163 -357 -216 c -66 -36 -219 -119 -340 -185 c -121 -66 -265 -143 -320 -173 c -249 -132 -335 -197 -412 -312 c -272 -410 -68 -1063 417 -1335 c 210 -119 394 -182 735 -253 c 449 -93 1368 -199 2015 -231 c 118 -6 225 -12 236 -15 c 17 -3 23 -13 27 -51 c 20 -152 29 -348 24 -508 c -6 -195 -17 -269 -127 -875 c -32 -179 -65 -377 -74 -440 c -29 -208 -55 -443 -62 -552 l -7 -108 l 162 0 l 161 0 l 0 47 c 0 60 45 456 71 628 c 11 72 42 245 69 385 c 56 290 92 496 116 655 c 19 134 21 433 4 625 c -7 74 -13 146 -14 160 c -1 25 1 25 99 33 c 165 13 183 17 215 43 c 65 55 62 154 -5 213 l -36 31 l -132 0 c -361 0 -946 43 -1847 135 c -80 8 -203 24 -275 35 c -71 11 -168 24 -215 30 c -115 15 -363 58 -430 75 c -30 8 -102 26 -159 40 c -111 28 -275 87 -356 128 c -48 24 -142 91 -196 139 c -63 57 -159 198 -159 234 c 0 2 24 16 53 30 c 112 56 249 191 320 314 c 86 149 63 291 -58 359 c -30 17 -55 35 -55 39 c 1 11 130 88 295 175 c 83 43 186 100 230 126 c 44 26 125 74 180 106 c 305 176 626 388 763 505 c 46 38 137 111 202 161 c 66 50 141 110 167 133 c 26 24 104 83 173 133 c 69 49 155 113 193 141 c 85 65 288 186 479 286 c 318 167 720 294 1078 342 c 105 14 167 15 390 8 c 334 -10 377 -9 406 11 c 40 26 54 68 69 217 c 35 331 117 615 260 896 c 231 457 539 776 1035 1074 c 91 55 310 167 336 173 c 10 2 42 15 71 29 c 28 14 64 28 80 32 c 15 3 0 -8 -34 -25 c -107 -55 -299 -191 -403 -285 c -121 -110 -309 -306 -370 -384 c -306 -394 -487 -787 -559 -1212 c -30 -180 -31 -189 -50 -547 c -13 -225 -23 -348 -32 -368 c -8 -16 -33 -58 -56 -93 c -51 -75 -56 -120 -20 -173 c 49 -73 124 -84 211 -28 c 52 33 89 86 128 185 c 40 103 56 212 68 465 c 25 522 79 764 249 1114 c 128 265 209 382 414 600 c 120 128 318 305 421 375 c 243 167 562 334 887 463 c 165 66 231 86 278 87 l 24 0 l -7 -192 c -12 -330 -49 -597 -122 -893 c -76 -305 -124 -450 -239 -720 c -234 -549 -649 -1069 -1083 -1353 c -125 -82 -300 -175 -392 -207 c -322 -115 -343 -125 -372 -184 c -21 -43 -22 -60 -26 -411 c -11 -870 63 -1698 204 -2292 c 127 -537 302 -942 609 -1411 c 161 -247 437 -559 675 -765 c 250 -216 595 -463 852 -611 l 106 -61 l 344 0 l 343 1 l -230 117 c -464 237 -708 388 -998 620 c -254 203 -376 320 -606 585 c -155 177 -346 462 -474 707 c -223 426 -384 1049 -457 1764 c -57 558 -86 1542 -46 1575 c 6 5 47 23 91 39 c 320 117 691 354 951 608 c 272 267 577 694 724 1014 c 230 501 356 917 421 1390 c 39 290 37 795 -5 893 c -20 48 -83 105 -125 114 c -55 12 -401 8 -526 -6 c -443 -48 -850 -169 -1233 -367 c -445 -229 -780 -501 -1044 -849 c -111 -148 -213 -306 -270 -420 c -27 -55 -53 -104 -58 -109 c -10 -10 -16 9 -50 168 c -60 280 -230 688 -407 975 c -222 359 -578 751 -732 806 c -69 24 -137 19 -206 -14 z m 164 -328 c 43 -33 53 -43 153 -154 c 347 -386 624 -909 748 -1411 c 44 -180 85 -420 94 -554 c 7 -91 -8 -306 -23 -347 c -8 -22 -10 -22 -252 -19 c -248 3 -315 -2 -549 -43 c -216 -38 -524 -134 -720 -224 c -67 -31 -76 -28 -94 27 c -26 81 -64 242 -91 387 c -57 307 -48 769 20 1060 c 97 413 197 661 393 974 c 103 163 240 331 271 331 c 8 0 30 -12 50 -27 z"
-													stroke-linecap="round"
-												></path>
-											</g>
-											<g transform="matrix(0.1333 0 0 -0.1333 -2.9295 27.5902)">
-												<path
-													style="
-														stroke: none;
-														stroke-width: 1;
-														stroke-dasharray: none;
-														stroke-linecap: butt;
-														stroke-dashoffset: 0;
-														stroke-linejoin: miter;
-														stroke-miterlimit: 4;
-														is-custom-font: none;
-														font-file-url: none;
-														fill-rule: nonzero;
-														opacity: 1;
-													"
-													transform=" translate(-5098.1772, -4912.9225)"
-													d="M 4920 5502 c -77 -26 -116 -47 -188 -104 c -83 -67 -123 -117 -171 -218 c -97 -204 -70 -446 71 -634 c 189 -252 518 -311 775 -140 c 131 87 219 202 265 347 c 28 89 28 258 -1 348 c -39 122 -131 237 -257 319 c -105 68 -181 91 -324 96 c -93 3 -126 1 -170 -14 z m 71 -204 c 121 -68 131 -231 22 -328 c -143 -126 -313 -58 -313 124 c 0 164 161 277 291 204 z"
-													stroke-linecap="round"
-												></path>
-											</g>
+													" transform=" translate(-5488.2135, -4819.9841)"
+												d="M 4755 9611 c -104 -50 -195 -145 -355 -370 c -177 -250 -311 -519 -405 -812 c -77 -238 -111 -388 -142 -629 c -22 -169 -25 -606 -5 -750 c 33 -234 85 -462 144 -627 c 27 -74 24 -80 -74 -129 c -152 -77 -509 -328 -753 -530 c -182 -150 -540 -422 -673 -510 c -100 -66 -260 -163 -357 -216 c -66 -36 -219 -119 -340 -185 c -121 -66 -265 -143 -320 -173 c -249 -132 -335 -197 -412 -312 c -272 -410 -68 -1063 417 -1335 c 210 -119 394 -182 735 -253 c 449 -93 1368 -199 2015 -231 c 118 -6 225 -12 236 -15 c 17 -3 23 -13 27 -51 c 20 -152 29 -348 24 -508 c -6 -195 -17 -269 -127 -875 c -32 -179 -65 -377 -74 -440 c -29 -208 -55 -443 -62 -552 l -7 -108 l 162 0 l 161 0 l 0 47 c 0 60 45 456 71 628 c 11 72 42 245 69 385 c 56 290 92 496 116 655 c 19 134 21 433 4 625 c -7 74 -13 146 -14 160 c -1 25 1 25 99 33 c 165 13 183 17 215 43 c 65 55 62 154 -5 213 l -36 31 l -132 0 c -361 0 -946 43 -1847 135 c -80 8 -203 24 -275 35 c -71 11 -168 24 -215 30 c -115 15 -363 58 -430 75 c -30 8 -102 26 -159 40 c -111 28 -275 87 -356 128 c -48 24 -142 91 -196 139 c -63 57 -159 198 -159 234 c 0 2 24 16 53 30 c 112 56 249 191 320 314 c 86 149 63 291 -58 359 c -30 17 -55 35 -55 39 c 1 11 130 88 295 175 c 83 43 186 100 230 126 c 44 26 125 74 180 106 c 305 176 626 388 763 505 c 46 38 137 111 202 161 c 66 50 141 110 167 133 c 26 24 104 83 173 133 c 69 49 155 113 193 141 c 85 65 288 186 479 286 c 318 167 720 294 1078 342 c 105 14 167 15 390 8 c 334 -10 377 -9 406 11 c 40 26 54 68 69 217 c 35 331 117 615 260 896 c 231 457 539 776 1035 1074 c 91 55 310 167 336 173 c 10 2 42 15 71 29 c 28 14 64 28 80 32 c 15 3 0 -8 -34 -25 c -107 -55 -299 -191 -403 -285 c -121 -110 -309 -306 -370 -384 c -306 -394 -487 -787 -559 -1212 c -30 -180 -31 -189 -50 -547 c -13 -225 -23 -348 -32 -368 c -8 -16 -33 -58 -56 -93 c -51 -75 -56 -120 -20 -173 c 49 -73 124 -84 211 -28 c 52 33 89 86 128 185 c 40 103 56 212 68 465 c 25 522 79 764 249 1114 c 128 265 209 382 414 600 c 120 128 318 305 421 375 c 243 167 562 334 887 463 c 165 66 231 86 278 87 l 24 0 l -7 -192 c -12 -330 -49 -597 -122 -893 c -76 -305 -124 -450 -239 -720 c -234 -549 -649 -1069 -1083 -1353 c -125 -82 -300 -175 -392 -207 c -322 -115 -343 -125 -372 -184 c -21 -43 -22 -60 -26 -411 c -11 -870 63 -1698 204 -2292 c 127 -537 302 -942 609 -1411 c 161 -247 437 -559 675 -765 c 250 -216 595 -463 852 -611 l 106 -61 l 344 0 l 343 1 l -230 117 c -464 237 -708 388 -998 620 c -254 203 -376 320 -606 585 c -155 177 -346 462 -474 707 c -223 426 -384 1049 -457 1764 c -57 558 -86 1542 -46 1575 c 6 5 47 23 91 39 c 320 117 691 354 951 608 c 272 267 577 694 724 1014 c 230 501 356 917 421 1390 c 39 290 37 795 -5 893 c -20 48 -83 105 -125 114 c -55 12 -401 8 -526 -6 c -443 -48 -850 -169 -1233 -367 c -445 -229 -780 -501 -1044 -849 c -111 -148 -213 -306 -270 -420 c -27 -55 -53 -104 -58 -109 c -10 -10 -16 9 -50 168 c -60 280 -230 688 -407 975 c -222 359 -578 751 -732 806 c -69 24 -137 19 -206 -14 z m 164 -328 c 43 -33 53 -43 153 -154 c 347 -386 624 -909 748 -1411 c 44 -180 85 -420 94 -554 c 7 -91 -8 -306 -23 -347 c -8 -22 -10 -22 -252 -19 c -248 3 -315 -2 -549 -43 c -216 -38 -524 -134 -720 -224 c -67 -31 -76 -28 -94 27 c -26 81 -64 242 -91 387 c -57 307 -48 769 20 1060 c 97 413 197 661 393 974 c 103 163 240 331 271 331 c 8 0 30 -12 50 -27 z"
+												stroke-linecap="round"></path>
 										</g>
-									</g></svg
-							></span>
-							<p
-								style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box"
-								class="break-all text-ellipsis overflow-hidden text-sm pl-1"
-							>
-								Cliparoo
-							</p>
-							<div class="card-actions justify-between items-center">
-								<span class="badge badge-primary">text</span>
-								<time class="text-sm">November 22, 2024</time>
-							</div>
-						</button>
-						<div class="dropdown dropdown-end absolute top-[calc(0.5rem+2px)] right-2 p-0">
-							<button
-								class="btn btn-sm size-8 p-0 bg-transparent border-none hover:border focus:ring-2 ring-base-content"
-								tabindex="0"
-								aria-label="more options"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									class="lucide lucide-ellipsis-vertical"
-								>
-									<circle cx="12" cy="12" r="1"></circle>
-									<circle cx="12" cy="5" r="1"></circle>
-									<circle cx="12" cy="19" r="1"></circle>
-								</svg>
-							</button>
-							<ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-								<li><button>Delete</button></li>
-							</ul>
+										<g transform="matrix(0.1333 0 0 -0.1333 -2.9295 27.5902)">
+											<path style="
+														stroke: none;
+														stroke-width: 1;
+														stroke-dasharray: none;
+														stroke-linecap: butt;
+														stroke-dashoffset: 0;
+														stroke-linejoin: miter;
+														stroke-miterlimit: 4;
+														is-custom-font: none;
+														font-file-url: none;
+														fill-rule: nonzero;
+														opacity: 1;
+													" transform=" translate(-5098.1772, -4912.9225)"
+												d="M 4920 5502 c -77 -26 -116 -47 -188 -104 c -83 -67 -123 -117 -171 -218 c -97 -204 -70 -446 71 -634 c 189 -252 518 -311 775 -140 c 131 87 219 202 265 347 c 28 89 28 258 -1 348 c -39 122 -131 237 -257 319 c -105 68 -181 91 -324 96 c -93 3 -126 1 -170 -14 z m 71 -204 c 121 -68 131 -231 22 -328 c -143 -126 -313 -58 -313 124 c 0 164 161 277 291 204 z"
+												stroke-linecap="round"></path>
+										</g>
+									</g>
+								</g>
+							</svg>
+						</span>
+						<p style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box"
+							class="break-all text-ellipsis overflow-hidden text-sm pl-1">
+							Cliparoo
+						</p>
+						<div class="card-actions justify-between items-center">
+							<span class="badge badge-primary">text</span>
+							<time class="text-sm">November 22, 2024</time>
 						</div>
-					</div>
-
-					<div class="relative m-2 mb-0">
-						<button
-							class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start"
-						>
-							<span class="badge flex max-w-fit justify-start gap-1 w-[calc(100%-2.25rem)]"
-								><span class="text-ellipsis whitespace-nowrap overflow-hidden"
-									>cliparoo/LICENSE at main · ViniciusCestarii/cliparoo - Google Chrome</span
-								>
-								<svg
-									class="w-4 h-4 flex-shrink-0"
-									fill="currentColor"
-									viewBox="0 0 24 24"
-									xmlns="http://www.w3.org/2000/svg"
-									aria-hidden="true"
-								>
-									<path
-										d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-									></path></svg
-							></span>
-							<p
-								style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box"
-								class="break-all text-ellipsis overflow-hidden text-sm pl-1"
-							>
-								https://github.com/ViniciusCestarii/cliparoo/blob/main/LICENSE
-							</p>
-							<div class="card-actions justify-between items-center">
-								<span class="badge badge-accent">url</span>
-								<time class="text-sm">November 22, 2024</time>
-							</div>
+					</button>
+					<div class="dropdown dropdown-end absolute top-[calc(0.5rem+2px)] right-2 p-0">
+						<button class="btn btn-sm size-8 p-0 bg-transparent border-none hover:border focus:ring-2 ring-base-content"
+							tabindex="0" aria-label="more options">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+								stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+								class="lucide lucide-ellipsis-vertical">
+								<circle cx="12" cy="12" r="1"></circle>
+								<circle cx="12" cy="5" r="1"></circle>
+								<circle cx="12" cy="19" r="1"></circle>
+							</svg>
 						</button>
-						<div class="dropdown dropdown-end absolute top-[calc(0.5rem+2px)] right-2 p-0">
-							<button
-								class="btn btn-sm size-8 p-0 bg-transparent border-none hover:border focus:ring-2 ring-base-content"
-								tabindex="0"
-								aria-label="more options"
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									class="lucide lucide-ellipsis-vertical"
-								>
-									<circle cx="12" cy="12" r="1"></circle>
-									<circle cx="12" cy="5" r="1"></circle>
-									<circle cx="12" cy="19" r="1"></circle>
-								</svg>
-							</button>
-							<ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-								<li><button>Delete</button></li>
-							</ul>
-						</div>
+						<ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+							<li><button>Delete</button></li>
+						</ul>
 					</div>
 				</div>
-			</section>
 
-			<section id="download" class="downloads">
-				<div class="download-container glass-card">
-					<h2>Download Cliparoo <span id="current-version">Loading...</span></h2>
-					<div class="download-stats"><span id="download-count">...</span> Total Downloads</div>
-					<p class="download-subtitle">Choose your platform to get started</p>
-					<div class="download-options">
-						<!-- macOS Downloads -->
-						<div class="download-group">
-							<h3 class="platform-title">macOS</h3>
-							<!-- notarized by apple badge -->
-							<div class="notarized-badge">
-								<img
-									src="https://img.shields.io/badge/Notarized%20by%20Apple-000000?style=for-the-badge&logo=apple&logoColor=white"
-									alt="Notarized by Apple"
-								/>
-							</div>
-							<div class="platform-options">
-								<a
-									href=""
-									class="download-button macos"
-									data-type="macos-intel"
-									data-version="latest"
-								>
-									<span class="icon">💻</span>
-									<div class="button-text">
-										<span class="primary">Intel Chip</span>
-										<span class="secondary">macOS 10.15 or later</span>
-									</div>
-								</a>
-								<a
-									href=""
-									class="download-button macos"
-									data-type="macos-silicon"
-									data-version="latest"
-								>
-									<span class="icon">🍎</span>
-									<div class="button-text">
-										<span class="primary">Apple Silicon</span>
-										<span class="secondary">macOS 11.0 or later</span>
-									</div>
-								</a>
-							</div>
+				<div class="relative m-2 mb-0">
+					<button class="btn p-2 h-36 flex flex-col flex-nowrap items-start justify-between w-full text-start">
+						<span class="badge flex max-w-fit justify-start gap-1 w-[calc(100%-2.25rem)]"><span
+								class="text-ellipsis whitespace-nowrap overflow-hidden">cliparoo/LICENSE at main ·
+								ViniciusCestarii/cliparoo - Google Chrome</span>
+							<svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<path
+									d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z">
+								</path>
+							</svg>
+						</span>
+						<p style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box"
+							class="break-all text-ellipsis overflow-hidden text-sm pl-1">
+							https://github.com/ViniciusCestarii/cliparoo/blob/main/LICENSE
+						</p>
+						<div class="card-actions justify-between items-center">
+							<span class="badge badge-accent">url</span>
+							<time class="text-sm">November 22, 2024</time>
 						</div>
+					</button>
+					<div class="dropdown dropdown-end absolute top-[calc(0.5rem+2px)] right-2 p-0">
+						<button class="btn btn-sm size-8 p-0 bg-transparent border-none hover:border focus:ring-2 ring-base-content"
+							tabindex="0" aria-label="more options">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+								stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+								class="lucide lucide-ellipsis-vertical">
+								<circle cx="12" cy="12" r="1"></circle>
+								<circle cx="12" cy="5" r="1"></circle>
+								<circle cx="12" cy="19" r="1"></circle>
+							</svg>
+						</button>
+						<ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+							<li><button>Delete</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
 
-						<!-- Windows Download -->
-						<div class="download-group">
-							<h3 class="platform-title">Windows</h3>
-							<div class="platform-options">
-								<a
-									href=""
-									class="download-button windows"
-									data-type="windows"
-									data-version="latest"
-								>
-									<span class="icon">🫣</span>
+		<section id="download" class="downloads">
+			<div class="download-container glass-card">
+				<h2>Download Cliparoo <span id="current-version">Loading...</span></h2>
+				<div class="download-stats"><span id="download-count">...</span> Total Downloads</div>
+				<p class="download-subtitle">Choose your platform to get started</p>
+				<div class="download-options">
+					<!-- macOS Downloads -->
+					<div class="download-group">
+						<h3 class="platform-title">macOS</h3>
+						<!-- notarized by apple badge -->
+						<div class="notarized-badge">
+							<img
+								src="https://img.shields.io/badge/Notarized%20by%20Apple-000000?style=for-the-badge&logo=apple&logoColor=white"
+								alt="Notarized by Apple" />
+						</div>
+						<div class="platform-options">
+							<a href="" class="download-button macos" data-type="macos-intel" data-version="latest">
+								<span class="icon">💻</span>
+								<div class="button-text">
+									<span class="primary">Intel Chip</span>
+									<span class="secondary">macOS 10.15 or later</span>
+								</div>
+							</a>
+							<a href="" class="download-button macos" data-type="macos-silicon" data-version="latest">
+								<span class="icon">🍎</span>
+								<div class="button-text">
+									<span class="primary">Apple Silicon</span>
+									<span class="secondary">macOS 11.0 or later</span>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<!-- Windows Download -->
+					<div class="download-group">
+						<h3 class="platform-title">Windows</h3>
+						<div class="platform-options">
+							<a href="" class="download-button windows" data-type="windows" data-version="latest">
+								<span class="icon">🫣</span>
+								<div class="button-text">
+									<span class="primary">Windows</span>
+									<span class="secondary">Windows 10 or later</span>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<!-- Linux Downloads -->
+					<div class="download-group">
+						<h3 class="platform-title">Linux</h3>
+						<div class="platform-options">
+							<!-- x86_64 Downloads -->
+							<div class="linux-downloads">
+								<h4>x86_64</h4>
+								<a href="" class="download-button linux" data-type="linux-deb-x64" data-version="latest">
+									<span class="icon">📦</span>
 									<div class="button-text">
-										<span class="primary">Windows</span>
-										<span class="secondary">Windows 10 or later</span>
+										<span class="primary">.deb Package</span>
+										<span class="secondary">Debian/Ubuntu</span>
+									</div>
+								</a>
+								<a href="" class="download-button linux" data-type="linux-appimage-x64" data-version="latest"
+									style="margin-top: 10px">
+									<span class="icon">🐧</span>
+									<div class="button-text">
+										<span class="primary">AppImage</span>
+										<span class="secondary">Universal Linux</span>
+									</div>
+								</a>
+								<a href="" class="download-button linux" data-type="linux-rpm-x64" data-version="latest"
+									style="margin-top: 10px">
+									<span class="icon">📦</span>
+									<div class="button-text">
+										<span class="primary">.rpm Package</span>
+										<span class="secondary">Fedora/RHEL x86_64</span>
 									</div>
 								</a>
 							</div>
-						</div>
 
-						<!-- Linux Downloads -->
-						<div class="download-group">
-							<h3 class="platform-title">Linux</h3>
-							<div class="platform-options">
-								<!-- x86_64 Downloads -->
-								<div class="linux-downloads">
-									<h4>x86_64</h4>
-									<a
-										href=""
-										class="download-button linux"
-										data-type="linux-deb-x64"
-										data-version="latest"
-									>
-										<span class="icon">📦</span>
-										<div class="button-text">
-											<span class="primary">.deb Package</span>
-											<span class="secondary">Debian/Ubuntu</span>
-										</div>
-									</a>
-									<a
-										href=""
-										class="download-button linux"
-										data-type="linux-appimage-x64"
-										data-version="latest"
-										style="margin-top: 10px"
-									>
-										<span class="icon">🐧</span>
-										<div class="button-text">
-											<span class="primary">AppImage</span>
-											<span class="secondary">Universal Linux</span>
-										</div>
-									</a>
-									<a
-										href=""
-										class="download-button linux"
-										data-type="linux-rpm-x64"
-										data-version="latest"
-										style="margin-top: 10px"
-									>
-										<span class="icon">📦</span>
-										<div class="button-text">
-											<span class="primary">.rpm Package</span>
-											<span class="secondary">Fedora/RHEL x86_64</span>
-										</div>
-									</a>
-								</div>
-
-								<!-- ARM64 Downloads -->
-								<div class="linux-downloads">
-									<h4>ARM64</h4>
-									<a
-										href=""
-										class="download-button linux"
-										data-type="linux-deb-arm64"
-										data-version="latest"
-									>
-										<span class="icon">📦</span>
-										<div class="button-text">
-											<span class="primary">.deb Package</span>
-											<span class="secondary">Debian/Ubuntu ARM64</span>
-										</div>
-									</a>
-									<a
-										href=""
-										class="download-button linux"
-										data-type="linux-appimage-arm64"
-										data-version="latest"
-										style="margin-top: 10px"
-									>
-										<span class="icon">🐧</span>
-										<div class="button-text">
-											<span class="primary">AppImage</span>
-											<span class="secondary">Universal Linux ARM64</span>
-										</div>
-									</a>
-									<a
-										href=""
-										class="download-button linux"
-										data-type="linux-rpm-arm64"
-										data-version="latest"
-										style="margin-top: 10px"
-									>
-										<span class="icon">📦</span>
-										<div class="button-text">
-											<span class="primary">.rpm Package</span>
-											<span class="secondary">Fedora/RHEL ARM64</span>
-										</div>
-									</a>
-								</div>
+							<!-- ARM64 Downloads -->
+							<div class="linux-downloads">
+								<h4>ARM64</h4>
+								<a href="" class="download-button linux" data-type="linux-deb-arm64" data-version="latest">
+									<span class="icon">📦</span>
+									<div class="button-text">
+										<span class="primary">.deb Package</span>
+										<span class="secondary">Debian/Ubuntu ARM64</span>
+									</div>
+								</a>
+								<a href="" class="download-button linux" data-type="linux-appimage-arm64" data-version="latest"
+									style="margin-top: 10px">
+									<span class="icon">🐧</span>
+									<div class="button-text">
+										<span class="primary">AppImage</span>
+										<span class="secondary">Universal Linux ARM64</span>
+									</div>
+								</a>
+								<a href="" class="download-button linux" data-type="linux-rpm-arm64" data-version="latest"
+									style="margin-top: 10px">
+									<span class="icon">📦</span>
+									<div class="button-text">
+										<span class="primary">.rpm Package</span>
+										<span class="secondary">Fedora/RHEL ARM64</span>
+									</div>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-			<section id="faq" class="faq">
-				<h2>Frequently Asked Questions</h2>
-			</section>
+		<section id="faq" class="faq">
+			<h2>Frequently Asked Questions</h2>
+		</section>
 
-			<!-- Google tag (gtag.js) -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=G-MODIFY"></script>
-			<script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag() {
-					dataLayer.push(arguments);
-				}
-				gtag('js', new Date());
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MODIFY"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-				gtag('config', 'G-MODIFY');
-			</script>
-			<script src="main.js"></script>
-		</main>
-	</body>
+			gtag('config', 'G-MODIFY');
+		</script>
+		<script src="main.js"></script>
+	</main>
+</body>
+
 </html>
