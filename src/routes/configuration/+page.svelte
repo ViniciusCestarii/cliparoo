@@ -16,7 +16,7 @@
 
 	const entry2: ClipboardEntryType = {
 		id: Infinity,
-		text: 'https://github.com/ViniciusCestarii/Cliparoo',
+		text: 'https://github.com/ViniciusCestarii/cliparoo',
 		window: 'Cliparoo',
 		timestamp: new Date().toISOString(),
 		type: 'url'
