@@ -31,6 +31,27 @@ prefersDark.addEventListener('change', (e) => {
 });
 
 // ===============================
+// Theme Toggle Behavior for Elements with `data-set-theme`
+// ===============================
+
+const allCliparooThemeButtons = document.querySelectorAll('[data-set-theme]');
+
+allCliparooThemeButtons.forEach((element) => {
+	element.addEventListener('click', () => {
+		const theme = element.getAttribute('data-set-theme');
+		element.className = element.className.replace('outline-transparent', 'outline-base-content');
+		allCliparooThemeButtons.forEach((el) => {
+			if (el !== element) {
+				el.className = el.className.replace('outline-base-content', 'outline-transparent');
+			}
+		})
+		// Set the theme using the `setTheme` function
+		document.getElementById('button-preview').setAttribute('data-theme', theme);
+	});
+});
+
+
+// ===============================
 // Version and Download Management
 // ===============================
 async function fetchDownloadStats() {

@@ -1,0 +1,4 @@
+section:not(#home) {
+  margin: 6rem 0;
+  scroll-margin-top: 5rem;
+}
