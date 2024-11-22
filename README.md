@@ -1,5 +1,3 @@
-# Cliparoo
-
 <div align="center">
   <img src="static/cliparoo.png" alt="Cliparoo Logo" width="120" />
   <h1>Cliparoo</h1>
