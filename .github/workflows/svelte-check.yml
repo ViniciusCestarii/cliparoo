@@ -1,0 +1,24 @@
+name: Format Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.1.0
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check Svelte
+        run: bun check
