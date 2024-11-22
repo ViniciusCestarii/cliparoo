@@ -44,12 +44,11 @@ allCliparooThemeButtons.forEach((element) => {
 			if (el !== element) {
 				el.className = el.className.replace('outline-base-content', 'outline-transparent');
 			}
-		})
+		});
 		// Set the theme using the `setTheme` function
 		document.getElementById('button-preview').setAttribute('data-theme', theme);
 	});
 });
-
 
 // ===============================
 // Version and Download Management
