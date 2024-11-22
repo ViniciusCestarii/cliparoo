@@ -9,6 +9,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"lint": "prettier --check .",
 		"tauri": "tauri",
 		"prepare": "husky"
