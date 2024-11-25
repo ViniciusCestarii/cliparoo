@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ClipboardEntry from "../clipboard-entry.svelte";
-  import type { ClipboardEntry as ClipboardEntryType } from '$lib/types';
+	import ClipboardEntry from '../clipboard-entry.svelte';
+	import type { ClipboardEntry as ClipboardEntryType } from '$lib/types';
 
-  const entry: ClipboardEntryType = {
+	const entry: ClipboardEntryType = {
 		id: Infinity,
 		text: 'Hello, world!',
 		window: 'Cliparoo',
@@ -11,4 +11,4 @@
 	};
 </script>
 
-<ClipboardEntry entry={entry} />
+<ClipboardEntry {entry} />
