@@ -14,7 +14,7 @@
 			<li><a href="#features">Features</a></li>
 			<li><a href="#download">Download</a></li>
 			<li><a href="#faq">FAQ</a></li>
-			<li class="flex justify-center items-center">
+			<li class="flex items-center justify-center">
 				<ThemeToggle />
 			</li>
 		</ul>
