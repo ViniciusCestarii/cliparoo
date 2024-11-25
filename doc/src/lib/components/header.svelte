@@ -1,5 +1,6 @@
 <script lang="ts">
 	import cliparooSrc from '../../../../static/cliparoo.png';
+	import ThemeToggle from './theme-toggle.svelte';
 </script>
 
 <header class="sticky top-0 z-10 border-b border-base-300 bg-base-100/70 backdrop-blur-md">
@@ -13,10 +14,8 @@
 			<li><a href="#features">Features</a></li>
 			<li><a href="#download">Download</a></li>
 			<li><a href="#faq">FAQ</a></li>
-			<li>
-				<button class="theme-toggle" aria-label="Toggle theme">
-					<span>🌙</span>
-				</button>
+			<li class="flex justify-center items-center">
+				<ThemeToggle />
 			</li>
 		</ul>
 	</nav>
