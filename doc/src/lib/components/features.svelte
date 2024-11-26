@@ -1,10 +1,11 @@
 <script>
 	import { docState } from '$lib/state.svelte';
 	import { themes } from '../../../../tailwind.config';
-	import PreviewTheme from './preview-theme.svelte';
+	import ThemePreview from './theme-preview.svelte';
+	import Section from './section.svelte';
 </script>
 
-<section id="features" class="min-h-screen">
+<Section id="features">
 	<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
 		{#each themes as theme}
 			<label class="relative">
@@ -16,8 +17,8 @@
 					value={theme}
 					id={theme}
 				/>
-				<PreviewTheme {theme} />
+				<ThemePreview {theme} />
 			</label>
 		{/each}
 	</div>
-</section>
+</Section>

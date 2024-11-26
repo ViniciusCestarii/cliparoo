@@ -1,3 +1,9 @@
-<section id="faq" class="hero min-h-screen">
+<script>
+
+	import Section from "./section.svelte";
+
+</script>
+
+<Section id="faq" class="hero">
 	<div class="hero-content">FAQ</div>
-</section>
+</Section>
