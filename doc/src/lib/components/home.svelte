@@ -7,7 +7,7 @@
 <Section id="home" class="hero overflow-hidden bg-base-200">
 	<div class="hero-content">
 		<div class="flex flex-shrink-0 flex-col text-7xl font-bold">
-			<div class="mb-16 sm:mb-8 flex flex-col pl-4 sm:pl-8">
+			<div class="mb-16 flex flex-col pl-4 sm:mb-8 sm:pl-8">
 				<span>Your</span><span>Smart</span> <span>Clipboard</span>
 			</div>
 			<img
