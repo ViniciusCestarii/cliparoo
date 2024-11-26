@@ -6,6 +6,8 @@
 </script>
 
 <Section id="features">
+	<h2 class="text-3xl font-bold">Why use Cliparoo?</h2>
+
 	<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
 		{#each themes as theme}
 			<label class="relative">
