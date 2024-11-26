@@ -1,4 +1,4 @@
-import { themes } from '../../../tailwind.config';
+import { themes } from "../../../tailwind.config";
 
 const STATE_KEY = 'cliparooDocState';
 
@@ -33,7 +33,6 @@ export const loadStateFromStorage = () => {
 	const storedState = localStorage.getItem(STATE_KEY);
 	const state: DocStateType = storedState ? JSON.parse(storedState) : initialState;
 
-	setThemeHtml(!!state.dark);
 	setTheme(state.theme);
 
 	return state;
@@ -41,11 +40,6 @@ export const loadStateFromStorage = () => {
 
 export const saveStateToStorage = (state: DocStateType) => {
 	localStorage.setItem(STATE_KEY, JSON.stringify(state));
-};
-
-const setThemeHtml = (dark: boolean) => {
-	console.log('saving state', dark);
-	document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
 };
 
 const setTheme = (theme: Theme) => {
