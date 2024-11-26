@@ -1,27 +1,31 @@
-const STATE_KEY = 'cliparooDocState';
+import { themes } from '../../../tailwind.config';
+
+const STATE_KEY = 'cliparooDocState'
+
+export type Theme = (typeof themes)[number];
 
 type DocStateType = {
 	dark?: boolean;
+  theme: Theme
 };
 
-const initialState: DocStateType = {};
+
+const initialState: DocStateType = {
+  theme: themes[0]
+};
 
 class DocState {
-	#state: DocStateType;
+	#state: DocStateType = $state(loadStateFromStorage())
 
-	constructor() {
-		this.#state = loadStateFromStorage();
-	}
+  get theme() {
+    return this.#state.theme;
+  }
 
-	get dark() {
-		return !!this.#state.dark;
-	}
-
-	set dark(value: boolean) {
-		this.#state.dark = value;
-		setThemeHtml(value);
-		this._saveState();
-	}
+  set theme(value: Theme) {
+    this.#state.theme = value;
+    setTheme(value);
+    this._saveState();
+  }
 
 	private _saveState = () => saveStateToStorage(this.#state);
 }
@@ -31,6 +35,7 @@ export const loadStateFromStorage = () => {
 	const state: DocStateType = storedState ? JSON.parse(storedState) : initialState;
 
 	setThemeHtml(!!state.dark);
+  setTheme(state.theme);
 
 	return state;
 };
@@ -40,7 +45,12 @@ export const saveStateToStorage = (state: DocStateType) => {
 };
 
 const setThemeHtml = (dark: boolean) => {
+  console.log('saving state', dark);
 	document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
 };
 
-export const docState = $state(new DocState());
+const setTheme = (theme: Theme) => {
+  document.documentElement.setAttribute('data-theme', theme);
+}
+
+export const docState = new DocState();
