@@ -1,4 +1,4 @@
-import { themes } from "../../../tailwind.config";
+import { themes } from '../../../tailwind.config';
 
 const STATE_KEY = 'cliparooDocState';
 
