@@ -9,7 +9,6 @@
 	import { writeText } from '@tauri-apps/plugin-clipboard-manager';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils';
-	import { show } from '@tauri-apps/api/app';
 
 	interface ClipboardEntryProps extends HTMLAttributes<HTMLElement> {
 		entry: ClipboardEntry;
@@ -21,6 +20,8 @@
 	}
 
 	let { entry, class: className, components, ...props }: ClipboardEntryProps = $props();
+
+	const sliceText = entry.text.slice(0, 300);
 
 	async function handleEntryClick(text: string) {
 		await writeText(text);
@@ -50,7 +51,7 @@
 			style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
 			class="break-all text-ellipsis overflow-hidden text-sm pl-1"
 		>
-			{entry.text}
+			{sliceText}
 		</p>
 		<div class="card-actions justify-between items-center">
 			{#if cs.showTypeBadge}
