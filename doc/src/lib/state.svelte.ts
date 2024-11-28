@@ -1,4 +1,5 @@
 import { themes } from '../../../tailwind.config';
+import { getUserPreferredColorScheme } from './utils';
 
 const STATE_KEY = 'cliparooDocState';
 
@@ -7,10 +8,6 @@ export type Theme = (typeof themes)[number];
 type DocStateType = {
 	dark?: boolean;
 	theme: Theme;
-};
-
-const initialState: DocStateType = {
-	theme: themes[0]
 };
 
 class DocState {
@@ -28,6 +25,10 @@ class DocState {
 
 	private _saveState = () => saveStateToStorage(this.#state);
 }
+
+const initialState: DocStateType = {
+	theme: getUserPreferredColorScheme()
+};
 
 export const loadStateFromStorage = () => {
 	const storedState = localStorage.getItem(STATE_KEY);

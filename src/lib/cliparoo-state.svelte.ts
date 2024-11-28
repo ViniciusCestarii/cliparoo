@@ -6,6 +6,7 @@ import type {
 	Theme
 } from './types';
 import { binarySearch } from './search';
+import { getUserPreferredColorScheme } from './utils';
 
 class CliparooState {
 	#state = $state<CliparooStateType>(loadStateFromStorage());
@@ -150,7 +151,7 @@ const initialState: CliparooStateType = {
 		}
 	],
 	config: {
-		theme: 'dark',
+		theme: getUserPreferredColorScheme(),
 		showTimestamp: true,
 		showTypeBadge: true,
 		showWindowBadge: true,
