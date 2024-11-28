@@ -4,8 +4,8 @@
 	import CliparooPageExample from './cliparoo-page-example.svelte';
 </script>
 
-<Section id="home" class="hero overflow-hidden bg-base-200">
-	<div class="hero-content">
+<Section id="home" class="hero overflow-x-hidden bg-base-200 max-w-full">
+	<div class="hero-content xl:max-w-screen-lg">
 		<div class="flex flex-shrink-0 flex-col text-7xl font-bold">
 			<div class="mb-16 flex flex-col pl-4 sm:mb-8 sm:pl-8">
 				<span>Your</span><span>Smart</span> <span>Clipboard</span>
