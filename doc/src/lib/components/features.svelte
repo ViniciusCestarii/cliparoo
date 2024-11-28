@@ -16,7 +16,7 @@
 		mumbles it.
 	</p>
 
-	<div class="grid grid-cols-3 gap-6 mt-4">
+	<div class="mt-4 grid grid-cols-3 gap-6">
 		<div class="col-span-2 -mt-1">
 			<CliparooPageExample />
 		</div>

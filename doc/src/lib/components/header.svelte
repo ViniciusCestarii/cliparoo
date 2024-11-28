@@ -4,7 +4,7 @@
 </script>
 
 <header class="sticky top-0 z-10 border-b border-base-300 bg-base-100/70 backdrop-blur-md">
-	<nav class="navbar justify-between max-w-screen-lg mx-auto">
+	<nav class="navbar mx-auto max-w-screen-lg justify-between">
 		<div class="flex items-center space-x-1">
 			<img src={cliparooSrc} alt="Cliparoo Logo" class="size-10" />
 			<span class="text-lg">Cliparoo</span>
