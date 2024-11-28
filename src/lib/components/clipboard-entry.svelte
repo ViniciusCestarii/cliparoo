@@ -21,7 +21,7 @@
 
 	let { entry, class: className, components, ...props }: ClipboardEntryProps = $props();
 
-	const sliceText = entry.text.slice(0, 300);
+	const sliceText = entry.text.length > 600 ? entry.text.slice(0, 600) + '[HIDDEN]' : entry.text;
 
 	async function handleEntryClick(text: string) {
 		await writeText(text);
