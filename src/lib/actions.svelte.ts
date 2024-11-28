@@ -1,3 +1,3 @@
 export function focus(el: HTMLElement) {
-  el.focus();
+	el.focus();
 }
