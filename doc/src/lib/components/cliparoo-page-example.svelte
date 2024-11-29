@@ -146,7 +146,7 @@
 						style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box;"
 						class="overflow-hidden text-ellipsis break-all pl-1 text-sm"
 					>
-						docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0-management
+					{"2024-11-29 11:04:40.418191+00:00 [info] <0.801.0> accepting AMQP connection 172.17.0.1:55170 -> 172.17.0.2:5672"}
 					</p>
 					<div class="card-actions items-center justify-between">
 						<span class="badge badge-primary">text</span>
@@ -187,7 +187,7 @@
 				>
 					<span class="badge flex w-[calc(100%-2.25rem)] max-w-fit justify-start gap-1"
 						><span class="overflow-hidden text-ellipsis whitespace-nowrap"
-							>RabbitMQ.md - sagep-pagamentos - Visual Studio Code</span
+							>RabbitMQ.md - MyApp - Visual Studio Code</span
 						>
 						<svg
 							class="h-4 w-4 flex-shrink-0"
