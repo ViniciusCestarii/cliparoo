@@ -26,7 +26,7 @@
 					<input
 						data-theme={theme}
 						type="radio"
-						class="radio-primary radio absolute left-3 sm:left-4 top-4 size-4 sm:size-6"
+						class="radio-primary radio absolute left-3 top-4 size-4 sm:left-4 sm:size-6"
 						bind:group={docState.theme}
 						value={theme}
 						id={theme}
