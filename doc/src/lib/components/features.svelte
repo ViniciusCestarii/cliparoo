@@ -16,7 +16,7 @@
 		mumbles it.
 	</p>
 
-	<div class="mt-4 grid grid-cols-3 gap-6">
+	<div class="mt-4 grid grid-cols-3 gap-0 sm:gap-6">
 		<div class="col-span-2 -mt-1">
 			<CliparooPageExample />
 		</div>
@@ -26,7 +26,7 @@
 					<input
 						data-theme={theme}
 						type="radio"
-						class="radio-primary radio absolute left-4 top-4"
+						class="radio-primary radio absolute left-3 sm:left-4 top-4 size-4 sm:size-6"
 						bind:group={docState.theme}
 						value={theme}
 						id={theme}

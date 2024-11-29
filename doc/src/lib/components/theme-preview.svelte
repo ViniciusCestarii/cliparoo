@@ -20,8 +20,8 @@
 			<div
 				class="col-span-4 col-start-2 row-span-3 row-start-1 flex flex-col gap-1 bg-base-100 p-2"
 			>
-				<div class="font-bold">{theme}</div>
-				<div class="flex flex-wrap gap-1">
+				<div class="text-sm sm:text-base font-bold">{theme}</div>
+				<div class="hidden sm:flex flex-wrap gap-1">
 					<div class="flex aspect-square w-5 items-center justify-center rounded bg-primary lg:w-6">
 						<div class="text-sm font-bold text-primary-content">A</div>
 					</div>
