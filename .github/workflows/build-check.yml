@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'src-tauri/**'
+      - 'apps/cliparoo/**'
 
 env:
   CARGO_TERM_COLOR: always
@@ -19,6 +19,9 @@ jobs:
   build:
     name: Build Check
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/cliparoo
 
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +29,7 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.1.0
+          bun-version: 1.1.38
 
       - name: Cache Linux Dependencies
         id: cache-apt

@@ -1,17 +1,17 @@
-name: Format Check
+name: Doc Format Check
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'apps/cliparoo/**'
+      - 'apps/doc/**'
 
 jobs:
   format:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: apps/cliparoo
+        working-directory: apps/doc
     steps:
       - uses: actions/checkout@v4
 

@@ -4,18 +4,21 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'src/**'
+      - 'apps/cliparoo/src/**'
 
 jobs:
-  format:
+  check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/cliparoo
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.1.0
+          bun-version: 1.1.38
 
       - name: Install dependencies
         run: bun install --frozen-lockfile

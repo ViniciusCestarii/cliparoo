@@ -1,17 +1,17 @@
-name: Format Check
+name: Doc Build Check
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'apps/cliparoo/**'
+      - 'apps/doc/**'
 
 jobs:
-  format:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: apps/cliparoo
+        working-directory: apps/doc
     steps:
       - uses: actions/checkout@v4
 
@@ -23,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Check formatting
-        run: bun format:check
+      - name: Build doc
+        run: bun run build
