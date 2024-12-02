@@ -6,13 +6,15 @@ on:
     paths:
       - 'apps/cliparoo/src/**'
 
+defaults:
+  run:
+    working-directory: apps/cliparoo
+
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: apps/cliparoo
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2

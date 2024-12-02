@@ -6,13 +6,15 @@ on:
     paths:
       - 'apps/doc/src/**'
 
+defaults:
+  run:
+    working-directory: apps/doc
+
 jobs:
   format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: apps/doc
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
