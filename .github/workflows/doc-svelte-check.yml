@@ -8,13 +8,12 @@ on:
 
 jobs:
   check:
-    defaults:
-      run:
-        working-directory: apps/doc
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          path: apps/doc
+        
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
