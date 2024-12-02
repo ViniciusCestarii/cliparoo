@@ -1,10 +1,10 @@
-name: Svelte Check
+name: Doc Format Check
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'apps/cliparoo/src/**'
+      - 'apps/doc/**'
 
 jobs:
   format:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          path: apps/cliparoo
+          path: apps/doc
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
@@ -22,5 +22,5 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Check Svelte
-        run: bun check
+      - name: Check formatting
+        run: bun format:check

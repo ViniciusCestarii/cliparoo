@@ -1,6 +1,6 @@
 <script>
 	import Section from './section.svelte';
-	import cliparooMascot from '../../../../static/cliparoo-mascot.jpeg';
+	import cliparooMascot from '../../../../../static/cliparoo-mascot.jpeg';
 	import CliparooPageExample from './cliparoo-page-example.svelte';
 </script>
 

@@ -1,10 +1,10 @@
-name: Svelte Check
+name: Doc Svelte Check
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'apps/cliparoo/src/**'
+      - 'apps/doc/src/**'
 
 jobs:
   format:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          path: apps/cliparoo
+          path: apps/doc
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2

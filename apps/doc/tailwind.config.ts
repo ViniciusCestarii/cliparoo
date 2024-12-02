@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 import daisyui from 'daisyui';
-import { themes } from '../tailwind.config';
+import { themes } from '../cliparoo/tailwind.config';
 
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],

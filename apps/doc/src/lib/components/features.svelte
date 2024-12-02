@@ -1,6 +1,6 @@
 <script>
 	import { docState } from '$lib/state.svelte';
-	import { themes } from '../../../../tailwind.config';
+	import { themes } from '../../../../cliparoo/tailwind.config';
 	import ThemePreview from './theme-preview.svelte';
 	import Section from './section.svelte';
 	import CliparooPageExample from './cliparoo-page-example.svelte';
