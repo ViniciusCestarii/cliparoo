@@ -6,13 +6,12 @@ on:
     paths:
       - 'apps/cliparoo/src/**'
 
-defaults:
-  run:
-    working-directory: apps/cliparoo
-
 jobs:
-  format:
+  check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/cliparoo
     steps:
       - uses: actions/checkout@v4
 

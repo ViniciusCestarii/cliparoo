@@ -6,10 +6,6 @@ on:
     paths:
       - 'apps/cliparoo/**'
 
-defaults:
-  run:
-    working-directory: apps/cliparoo
-
 env:
   CARGO_TERM_COLOR: always
   CARGO_INCREMENTAL: 1
@@ -23,6 +19,9 @@ jobs:
   build:
     name: Build Check
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/cliparoo
 
     steps:
       - uses: actions/checkout@v4

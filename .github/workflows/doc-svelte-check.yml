@@ -6,12 +6,11 @@ on:
     paths:
       - 'apps/doc/src/**'
 
-defaults:
-  run:
-    working-directory: apps/doc
-
 jobs:
-  format:
+  check:
+    defaults:
+      run:
+        working-directory: apps/doc
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
