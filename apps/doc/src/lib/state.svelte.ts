@@ -1,4 +1,4 @@
-import { themes } from '../../../cliparoo/tailwind.config';
+import type { themes } from '../../tailwind.config';
 import { getUserPreferredColorScheme } from './utils';
 
 const STATE_KEY = 'cliparooDocState';
