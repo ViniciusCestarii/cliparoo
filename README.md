@@ -8,6 +8,10 @@
 [![GitHub issues](https://img.shields.io/github/issues/ViniciusCestarii/cliparoo)](https://github.com/ViniciusCestarii/cliparoo/issues)
 [![GitHub release](https://img.shields.io/github/v/release/ViniciusCestarii/cliparoo)](https://github.com/ViniciusCestarii/cliparoo/releases)
 
+[![Build Status](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/build-check.yml/badge.svg)](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/build-check.yml)
+[![Svelte Status](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/svelte-check.yml/badge.svg)](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/svelte-check.yml)
+[![Format Status](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/format-check.yml/badge.svg)](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/format-check.yml)
+
 </div>
 
 _Currenly in development 🚧_
