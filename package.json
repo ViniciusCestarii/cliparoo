@@ -11,7 +11,8 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"lint": "prettier --check .",
-		"tauri": "tauri"
+		"tauri": "tauri",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "^2.7.2",
@@ -20,6 +21,7 @@
 		"autoprefixer": "^10.4.20",
 		"bun-types": "^1.1.33",
 		"daisyui": "^4.12.13",
+		"husky": "^9.1.7",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
 		"prettier-plugin-tailwindcss": "^0.6.9",
