@@ -5,22 +5,8 @@
 	import ClipboardWindowBadge from '$lib/components/clipboard-window-badge.svelte';
 	import ClipboardTypeBadge from '$lib/components/clipboard-type-badge.svelte';
 	import cs from '$lib/cliparoo-state.svelte';
-
-	const entry1: ClipboardEntryType = {
-		id: Infinity,
-		text: 'Hello, world!',
-		window: 'Cliparoo',
-		timestamp: new Date().toISOString(),
-		type: 'text'
-	};
-
-	const entry2: ClipboardEntryType = {
-		id: Infinity,
-		text: 'https://github.com/ViniciusCestarii/cliparoo',
-		window: 'Cliparoo',
-		timestamp: new Date().toISOString(),
-		type: 'url'
-	};
+	import ClipboardEntry_1 from '$lib/components/example/clipboard-entry-1.svelte';
+	import ClipboardEntry_2 from '$lib/components/example/clipboard-entry-2.svelte';
 </script>
 
 <div class="grid xs:grid-cols-[minmax(0,_12rem)_minmax(0,_1fr)] xs:gap-4">
@@ -52,7 +38,7 @@
 
 	<div>
 		<div class="divider xs:divider-horizontal text-sm">Preview</div>
-		<ClipboardEntry entry={entry1} />
-		<ClipboardEntry entry={entry2} />
+		<ClipboardEntry_1 />
+		<ClipboardEntry_2 />
 	</div>
 </div>

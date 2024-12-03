@@ -1,8 +1,12 @@
 name: Format Check
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
+    paths:
+      - 'src/**'
 
 jobs:
   format:
@@ -13,7 +17,7 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.1.0
+          bun-version: 1.1.38
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
