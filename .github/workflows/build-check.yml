@@ -80,4 +80,5 @@ jobs:
         run: |
           bun tauri build -- \
             --target x86_64-unknown-linux-gnu \
+            --bundles deb \
             --ci
