@@ -4,14 +4,11 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'apps/cliparoo/src/**'
+      - 'src/**'
 
 jobs:
   check:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/cliparoo
     steps:
       - uses: actions/checkout@v4
 

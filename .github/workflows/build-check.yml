@@ -3,8 +3,6 @@ name: Build Check
 on:
   pull_request:
     branches: [main]
-    paths:
-      - 'apps/cliparoo/**'
 
 env:
   CARGO_TERM_COLOR: always
@@ -19,9 +17,6 @@ jobs:
   build:
     name: Build Check
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/cliparoo
 
     steps:
       - uses: actions/checkout@v4
