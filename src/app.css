@@ -59,3 +59,9 @@ svelte-virtual-list-row {
 svelte-virtual-list-row {
 	overflow: hidden;
 }
+
+code {
+	background-color: oklch(var(--b2)/var(--tw-bg-opacity));
+	border-radius: var(--rounded-btn, 0.5rem);
+	padding: 0.25rem 0.5rem;
+}
