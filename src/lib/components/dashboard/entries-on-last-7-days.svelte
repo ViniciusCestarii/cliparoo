@@ -23,16 +23,22 @@
 		const date = new Date(oneWeekAgo);
 		date.setDate(oneWeekAgo.getDate() + i);
 		return {
-			name: date.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }),
+			name: date.toLocaleDateString(undefined, {
+				weekday: 'short',
+				month: 'short',
+				day: 'numeric'
+			}),
 			day: date.getDay()
-		}
+		};
 	});
 
 	let lastWeekEntries = $derived(
-		cs.clipboard.filter((entry) => {
-			const entryDate = new Date(entry.timestamp);
-			return entryDate >= oneWeekAgo;
-		}).toSorted((a, b) => a.text.localeCompare(b.text))
+		cs.clipboard
+			.filter((entry) => {
+				const entryDate = new Date(entry.timestamp);
+				return entryDate >= oneWeekAgo;
+			})
+			.toSorted((a, b) => a.text.localeCompare(b.text))
 	);
 
 	let types = $derived([...new Set(lastWeekEntries.map((entry) => entry.type))]);
