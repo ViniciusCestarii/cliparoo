@@ -31,9 +31,9 @@
 	let filteredClipboard = $derived.by(() => {
 		const upperSearch = search.toUpperCase();
 
-		const isNoFilter = upperSearch.startsWith('NOFILTER');
+		const isNoFilter = upperSearch.startsWith('NOFILTER ');
 
-		const adjustedSearch = isNoFilter ? upperSearch.slice(8) : upperSearch;
+		const adjustedSearch = isNoFilter ? upperSearch.slice(9) : upperSearch;
 
 		const filters = isNoFilter ? {} : parseFilter(adjustedSearch);
 
@@ -95,9 +95,7 @@
 			class="w-full bg-base-100 px-2 outline-none rounded-btn rounded-t-none ring-2 ring-accent/70"
 			bind:value={search}
 		/>
-		<div class="absolute right-2">
-			<SearchFilterHelp class="bg-base-100 hover:bg-base-300" />
-		</div>
+			<SearchFilterHelp class="absolute right-3 top-2 bg-base-100 hover:bg-base-300 btn-sm" />
 	</div>
 {/if}
 
