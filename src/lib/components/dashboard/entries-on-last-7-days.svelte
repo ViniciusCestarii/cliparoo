@@ -38,7 +38,7 @@
 				const entryDate = new Date(entry.timestamp);
 				return entryDate >= oneWeekAgo;
 			})
-			.toSorted((a, b) => a.text.localeCompare(b.text))
+			.toSorted((a, b) => a.type.localeCompare(b.type))
 	);
 
 	let types = $derived([...new Set(lastWeekEntries.map((entry) => entry.type))]);
