@@ -9,7 +9,7 @@
 		type ChartData
 	} from 'chart.js';
 	import cs from '$lib/cliparoo-state.svelte';
-	import { getColors } from '$lib/theme';
+	import { getColorsArray } from '$lib/theme';
 	import BarChart from '../charts/bar.svelte';
 	import { cn } from '$lib/utils';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -54,15 +54,7 @@
 		)
 	);
 
-	let colors = $state(getColors());
-	const updateColors = () => {
-		colors = getColors();
-	};
-
-	let colorsArray = $derived([colors.primary, colors.accent]);
-
-	const observer = new MutationObserver(updateColors);
-	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+	const colorsArray = getColorsArray();
 
 	let data: ChartData<'bar', number[], unknown> = $derived({
 		labels: daysOfWeek.map((day) => day.name),

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ArcElement, Chart, Legend, Tooltip, type ChartData } from 'chart.js';
 	import cs from '$lib/cliparoo-state.svelte';
-	import { getColors } from '$lib/theme';
+	import { getColors, getColorsArray } from '$lib/theme';
 	import Doughnut from '../charts/doughnut.svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils';
@@ -16,16 +16,7 @@
 		}, [])
 	);
 
-	let colors = $state(getColors());
-
-	const updateColors = () => {
-		colors = getColors();
-	};
-
-	let colorsArray = $derived([colors.primary, colors.accent]);
-
-	const observer = new MutationObserver(updateColors);
-	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+	const colorsArray = getColorsArray();
 
 	let data: ChartData<'doughnut', number[], unknown> = $derived({
 		labels: uniqueTypes,
