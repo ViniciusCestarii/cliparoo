@@ -95,7 +95,7 @@
 			class="w-full bg-base-100 px-2 outline-none rounded-btn rounded-t-none ring-2 ring-accent/70"
 			bind:value={search}
 		/>
-			<SearchFilterHelp class="absolute right-3 top-2 bg-base-100 hover:bg-base-300 btn-sm" />
+		<SearchFilterHelp class="absolute right-3 top-2 bg-base-100 hover:bg-base-300 btn-sm" />
 	</div>
 {/if}
 

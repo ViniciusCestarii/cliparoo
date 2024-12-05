@@ -59,7 +59,9 @@
 					it will search across all fields (type, window, and text). Example: <code>john doe</code>.
 				</p>
 				<p>
-					To disable filtering using the keywords, you can start the search with <strong>NOFILTER</strong>, e.g.,
+					To disable filtering using the keywords, you can start the search with <strong
+						>NOFILTER</strong
+					>, e.g.,
 					<code>{'NOFILTER { type:"seila" }'}</code>.
 				</p>
 				<div class="mt-4 flex justify-end">
