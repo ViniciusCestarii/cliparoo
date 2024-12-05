@@ -9,31 +9,30 @@ function parseStringToHSL(input: string) {
 }
 
 export function getColors() {
-	let primary = '';
-	let secondary = '';
-	let accent = '';
-
 	const style = getComputedStyle(document.documentElement);
 
-	// Get primary, secondary, and accent colors
-	const newPrimary = style.getPropertyValue('--p').trim();
-	const newSecondary = style.getPropertyValue('--s').trim();
-	const newAccent = style.getPropertyValue('--a').trim();
+	const primaryHSL = style.getPropertyValue('--p').trim();
+	const secondaryHSL = style.getPropertyValue('--s').trim();
+	const accentHSL = style.getPropertyValue('--a').trim();
+	const neutralHSL = style.getPropertyValue('--n').trim();
 
-	// Update colors if they have changed
-	const primaryColorOkLab = convertOkhslToOklab(parseStringToHSL(newPrimary));
-	primary = formatRgb(primaryColorOkLab);
+	const primaryColorOkLab = convertOkhslToOklab(parseStringToHSL(primaryHSL));
+	const primary = formatRgb(primaryColorOkLab);
 
-	const secondaryColorOkLab = convertOkhslToOklab(parseStringToHSL(newSecondary));
-	secondary = formatRgb(secondaryColorOkLab);
+	const secondaryColorOkLab = convertOkhslToOklab(parseStringToHSL(secondaryHSL));
+	const secondary = formatRgb(secondaryColorOkLab);
 
-	const accentColorOkLab = convertOkhslToOklab(parseStringToHSL(newAccent));
-	accent = formatRgb(accentColorOkLab);
+	const accentColorOkLab = convertOkhslToOklab(parseStringToHSL(accentHSL));
+	const accent = formatRgb(accentColorOkLab);
 
-	return { primary, secondary, accent };
+	const neutralColorOkLab = convertOkhslToOklab(parseStringToHSL(neutralHSL));
+	const neutral = formatRgb(neutralColorOkLab);
+
+	return { primary, secondary, accent, neutral };
 }
 
 export const getColorsArray = () => {
 	const colors = getColors();
-	return [colors.primary, colors.accent, colors.secondary];
+	// 	type: 'contact'| 'file-path' | 'text' | 'url';
+	return [colors.secondary, colors.neutral, colors.primary, colors.accent];
 };

@@ -6,7 +6,7 @@ import type {
 	Theme
 } from './types';
 import { binarySearch } from './search';
-import { getUserPreferredColorScheme } from './utils';
+import { getType, getUserPreferredColorScheme } from './utils';
 
 class CliparooState {
 	#state = $state<CliparooStateType>(loadStateFromStorage());
@@ -70,7 +70,7 @@ class CliparooState {
 		}
 
 		const timestamp = new Date().toISOString();
-		const type: ClipboardEntry['type'] = getType(baseEntry.text);
+		const type = getType(baseEntry.text);
 		const id = new Date(timestamp).getTime();
 		const window = this.#firstSessionCopy ? 'Unknown' : baseEntry.window;
 
@@ -129,15 +129,6 @@ const loadStateFromStorage = (): CliparooStateType => {
 
 const saveStateToStorage = (state: CliparooStateType) => {
 	localStorage.setItem(STATE_KEY, JSON.stringify(state));
-};
-
-const URL_REGEX =
-	/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
-
-const getType = (text: ClipboardEntry['text']): ClipboardEntry['type'] => {
-	const cleanText = text.trim();
-	if (URL_REGEX.exec(cleanText)) return 'url';
-	return 'text';
 };
 
 const initialState: CliparooStateType = {

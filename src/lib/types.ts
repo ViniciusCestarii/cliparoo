@@ -4,7 +4,7 @@ import { themes } from '../../tailwind.config';
 export type ClipboardEntry = {
 	id: number;
 	window: string;
-	type: 'text' | 'image' | 'url';
+	type: 'contact' | 'file-path' | 'text' | 'url';
 	text: string;
 	timestamp: string;
 };

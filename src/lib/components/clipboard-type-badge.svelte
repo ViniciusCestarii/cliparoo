@@ -6,8 +6,9 @@
 	}
 
 	const badgeClass: Record<ClipboardEntry['type'], string> = {
+		contact: 'badge-secondary',
+		'file-path': 'badge-neutral',
 		text: 'badge-primary',
-		image: 'badge-secondary',
 		url: 'badge-accent'
 	};
 
