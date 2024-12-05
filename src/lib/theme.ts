@@ -36,4 +36,4 @@ export function getColors() {
 export const getColorsArray = () => {
 	const colors = getColors();
 	return [colors.primary, colors.accent, colors.secondary];
-}
+};
