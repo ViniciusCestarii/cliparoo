@@ -17,15 +17,22 @@
 	Chart.register(Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 	const oneWeekAgo = new Date();
-	oneWeekAgo.setDate(oneWeekAgo.getDate() - 7); // Get the date one week ago
+	oneWeekAgo.setDate(oneWeekAgo.getDate() - 6);
 
-	const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const daysOfWeek = Array.from({ length: 7 }, (_, i) => {
+		const date = new Date(oneWeekAgo);
+		date.setDate(oneWeekAgo.getDate() + i);
+		return {
+			name: date.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }),
+			day: date.getDay()
+		}
+	});
 
 	let lastWeekEntries = $derived(
 		cs.clipboard.filter((entry) => {
 			const entryDate = new Date(entry.timestamp);
 			return entryDate >= oneWeekAgo;
-		})
+		}).toSorted((a, b) => a.text.localeCompare(b.text))
 	);
 
 	let types = $derived([...new Set(lastWeekEntries.map((entry) => entry.type))]);
@@ -33,9 +40,9 @@
 	let dailyCountsByType = $derived(
 		types.map((type) =>
 			daysOfWeek.map(
-				(_, i) =>
+				(day) =>
 					lastWeekEntries.filter(
-						(entry) => new Date(entry.timestamp).getDay() === i && entry.type === type
+						(entry) => new Date(entry.timestamp).getDay() === day.day && entry.type === type
 					).length
 			)
 		)
@@ -52,7 +59,7 @@
 	observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 	let data: ChartData<'bar', number[], unknown> = $derived({
-		labels: daysOfWeek,
+		labels: daysOfWeek.map((day) => day.name),
 		datasets: dailyCountsByType.map((counts, index) => ({
 			label: types[index],
 			data: counts,
@@ -62,9 +69,9 @@
 		}))
 	});
 
-	interface EntriesOnLastWeekProps extends HTMLAttributes<HTMLElement> {}
+	interface EntriesOnLast_7DaysProps extends HTMLAttributes<HTMLElement> {}
 
-	let { class: className, ...props }: EntriesOnLastWeekProps = $props();
+	let { class: className, ...props }: EntriesOnLast_7DaysProps = $props();
 </script>
 
 <div {...props} class={cn('relative w-full aspect-video', className)}>
