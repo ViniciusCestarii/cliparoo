@@ -9,7 +9,9 @@
 	import ClipboardEntry_2 from '$lib/components/example/clipboard-entry-2.svelte';
 </script>
 
-<div class="grid xs:grid-cols-[minmax(0,_12rem)_minmax(0,_1fr)] xs:gap-4">
+<div
+	class="h-[calc(100vh-4rem)] overflow-auto grid xs:grid-cols-[minmax(0,_12rem)_minmax(0,_1fr)] xs:gap-4"
+>
 	<div class="flex flex-col pt-1">
 		<ThemeToggle />
 		<div class="form-control">
