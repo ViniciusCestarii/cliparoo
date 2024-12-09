@@ -54,19 +54,39 @@
 						<code>text:"Ola Brasil"</code>)
 					</li>
 					<li>
-						<strong>date:</strong> Filters clipboard entries by date. You can use the following comparison operators:
+						<strong>date:</strong> Filters clipboard entries by date. You can use the following
+						comparison operators:
 						<ul class="list-disc ml-5 mt-2">
-							<li><strong>{'">=":'}</strong> Select entries on or after the specified date (e.g., <code>{'date:>=12/09/2024'}</code>)</li>
-							<li><strong>{'">":<'}</strong> Select entries after the specified date (e.g., <code>{'date:>12/09/2024'}</code>)</li>
-							<li><strong>{'"<=":'}</strong> Select entries on or before the specified date (e.g., <code>{'date:<=12/09/2024'}</code>)</li>
-							<li><strong>{'"<":<'}</strong> Select entries before the specified date (e.g., <code>{'date:<12/09/2024'}</code>)</li>
-							<li><strong>{'"=":<'}</strong> Select entries that exactly match the specified date (e.g., <code>{'date:12/09/2024'}</code>)</li>
+							<li>
+								<strong>{'">=":'}</strong> Select entries on or after the specified date (e.g.,
+								<code>{'date:>=12/09/2024'}</code>)
+							</li>
+							<li>
+								<strong>{'">":<'}</strong> Select entries after the specified date (e.g.,
+								<code>{'date:>12/09/2024'}</code>)
+							</li>
+							<li>
+								<strong>{'"<=":'}</strong> Select entries on or before the specified date (e.g.,
+								<code>{'date:<=12/09/2024'}</code>)
+							</li>
+							<li>
+								<strong>{'"<":<'}</strong> Select entries before the specified date (e.g.,
+								<code>{'date:<12/09/2024'}</code>)
+							</li>
+							<li>
+								<strong>{'"=":<'}</strong> Select entries that exactly match the specified date
+								(e.g., <code>{'date:12/09/2024'}</code>)
+							</li>
 						</ul>
 						<p class="mt-2 text-sm italic">
-							Obs1: The time portion of the date is ignored in the comparison, so <code>12/09/2024T15:30:00</code> will be treated the same as <code>2024-12-09T00:00:00</code>.
+							Obs1: The time portion of the date is ignored in the comparison, so <code
+								>12/09/2024T15:30:00</code
+							>
+							will be treated the same as <code>2024-12-09T00:00:00</code>.
 						</p>
 						<p class="mt-2 text-sm italic">
-							Obs2: Write the date in the American format (MM/DD/YYYY), as this is the expected format for the filter. Example: <code>12/09/2024</code>.
+							Obs2: Write the date in the American format (MM/DD/YYYY), as this is the expected
+							format for the filter. Example: <code>12/09/2024</code>.
 						</p>
 					</li>
 				</ul>
@@ -87,4 +107,3 @@
 		</div>
 	</div>
 {/if}
-

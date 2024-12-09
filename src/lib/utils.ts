@@ -94,7 +94,7 @@ export function filterClipboard(clipboards: ClipboardEntry[], search: string) {
 
 					// Normalize the filter date and entry date to ignore time
 					filterDate.setHours(0, 0, 0, 0);
-					entryDate.setHours(0, 0, 0, 0); 
+					entryDate.setHours(0, 0, 0, 0);
 
 					// Comparison logic based on operator
 					if (value.startsWith('>=')) {
