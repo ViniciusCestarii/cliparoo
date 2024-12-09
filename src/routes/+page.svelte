@@ -8,7 +8,6 @@
 	let search = $state('');
 
 	let filteredClipboard = $derived(filterClipboard(cs.clipboard, search));
-
 </script>
 
 <div class="h-[calc(100vh-4rem)] relative">

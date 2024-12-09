@@ -44,7 +44,6 @@ const checkIfUrl = (text: string) => URL_REGEX.exec(text);
 const URL_REGEX =
 	/^(https?:\/\/(?:www\.)?)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
-
 function parseFilter(filterStr: string) {
 	// Ensure values with spaces are quoted
 	filterStr = filterStr.replace(/(\w+):([^"\s]+)(?=\s|$)/g, '$1:"$2"'); // Add quotes to non-quoted values with spaces
