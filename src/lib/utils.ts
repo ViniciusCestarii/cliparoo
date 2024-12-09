@@ -16,8 +16,8 @@ export function getUserPreferredColorScheme() {
 
 export const getType = (text: ClipboardEntry['text']): ClipboardEntry['type'] => {
 	const cleanText = text.trim();
-	if (checkIfUrl(cleanText)) return 'url';
 	if (checkIfContact(cleanText)) return 'contact';
+	if (checkIfUrl(cleanText)) return 'url';
 	if (checkIfFilePath(cleanText)) return 'file-path';
 	return 'text';
 };
