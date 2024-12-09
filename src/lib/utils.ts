@@ -81,7 +81,48 @@ export function filterClipboard(clipboards: ClipboardEntry[], search: string) {
 					return entry.window.toUpperCase().includes(value);
 				}
 
-				return entry.text.toUpperCase().includes(value);
+				if (key === 'DATE') {
+					const filterDate = new Date(value);
+					const entryDate = new Date(entry.timestamp);
+
+					console.log(value);
+
+					if (isNaN(filterDate.getTime())) {
+						console.error('Invalid date provided in filter');
+						return false;
+					}
+
+					// Normalize the filter date and entry date to ignore time
+					filterDate.setHours(0, 0, 0, 0);
+					entryDate.setHours(0, 0, 0, 0); 
+
+					// Comparison logic based on operator
+					if (value.startsWith('>=')) {
+						console.log(entryDate, filterDate);
+						return entryDate >= filterDate;
+					}
+
+					if (value.startsWith('>')) {
+						console.log(entryDate, filterDate);
+						return entryDate > filterDate;
+					}
+
+					if (value.startsWith('<=')) {
+						console.log(entryDate, filterDate);
+						return entryDate <= filterDate;
+					}
+
+					if (value.startsWith('<')) {
+						console.log(entryDate, filterDate);
+						return entryDate < filterDate;
+					}
+
+					if (value.startsWith('=')) {
+						return entryDate.getTime() === filterDate.getTime();
+					}
+
+					return entryDate.getTime() === filterDate.getTime();
+				}
 			});
 		});
 	}

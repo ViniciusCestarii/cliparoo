@@ -39,7 +39,7 @@
 
 {#if showModal}
 	<div class="fixed inset-0 flex justify-center items-center bg-black/50 z-40">
-		<div class="bg-base-100 p-6 rounded-md max-w-lg w-full">
+		<div class="bg-base-100 p-6 rounded-md max-w-4xl w-full">
 			<div class="overflow-y-auto overflow-x-hidden max-h-[90vh]">
 				<h2 class="text-xl font-semibold mb-4">Search & Filter Explanation</h2>
 				<p>You can filter clipboard entries using the following format:</p>
@@ -52,6 +52,22 @@
 					<li>
 						<strong>text:</strong> Filters by the text content (e.g.,
 						<code>text:"Ola Brasil"</code>)
+					</li>
+					<li>
+						<strong>date:</strong> Filters clipboard entries by date. You can use the following comparison operators:
+						<ul class="list-disc ml-5 mt-2">
+							<li><strong>{'">=":'}</strong> Select entries on or after the specified date (e.g., <code>{'date:>=12/09/2024'}</code>)</li>
+							<li><strong>{'">":<'}</strong> Select entries after the specified date (e.g., <code>{'date:>12/09/2024'}</code>)</li>
+							<li><strong>{'"<=":'}</strong> Select entries on or before the specified date (e.g., <code>{'date:<=12/09/2024'}</code>)</li>
+							<li><strong>{'"<":<'}</strong> Select entries before the specified date (e.g., <code>{'date:<12/09/2024'}</code>)</li>
+							<li><strong>{'"=":<'}</strong> Select entries that exactly match the specified date (e.g., <code>{'date:12/09/2024'}</code>)</li>
+						</ul>
+						<p class="mt-2 text-sm italic">
+							Obs1: The time portion of the date is ignored in the comparison, so <code>12/09/2024T15:30:00</code> will be treated the same as <code>2024-12-09T00:00:00</code>.
+						</p>
+						<p class="mt-2 text-sm italic">
+							Obs2: Write the date in the American format (MM/DD/YYYY), as this is the expected format for the filter. Example: <code>12/09/2024</code>.
+						</p>
 					</li>
 				</ul>
 				<p class="mb-4">
@@ -71,3 +87,4 @@
 		</div>
 	</div>
 {/if}
+
