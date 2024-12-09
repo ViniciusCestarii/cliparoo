@@ -13,5 +13,3 @@
 [![Format Status](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/format-check.yml/badge.svg)](https://github.com/ViniciusCestarii/cliparoo/actions/workflows/format-check.yml)
 
 </div>
-
-_Currenly in development 🚧_
