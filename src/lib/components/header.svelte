@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 
 	import NavDropdown from './nav-dropdown.svelte';
+	import NavIconLinks from './nav-icon-links.svelte';
 </script>
 
 <header
@@ -12,6 +13,7 @@
 	</a>
 
 	<div class="h-12">
-		<NavDropdown />
+		<NavDropdown class="xs:hidden" />
+		<NavIconLinks class="hidden xs:block" />
 	</div>
 </header>
