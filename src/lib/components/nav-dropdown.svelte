@@ -8,7 +8,7 @@
 	let { class: className, ...props }: NavDropdownProps = $props();
 </script>
 
-<div {...props} class={cn('dropdown dropdown-end mb-72', className)}>
+<div {...props} class={cn('dropdown dropdown-end', className)}>
 	<div
 		tabIndex={0}
 		role="button"
