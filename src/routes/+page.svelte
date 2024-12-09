@@ -4,7 +4,6 @@
 	import ClipboardEntry from '$lib/components/clipboard-entry.svelte';
 	import SearchFilterHelp from '$lib/components/search-filter-help.svelte';
 	import VirtualList from '$lib/components/virtual-list.svelte';
-	import { cn } from '$lib/utils';
 
 	let search = $state('');
 	let searchBlock: HTMLElement | null = $state(null);
@@ -65,13 +64,13 @@
 		if (event.ctrlKey && event.key === 'f') {
 			event.preventDefault();
 			displaySearch = !displaySearch;
+			search = '';
 		}
 	}
 
 	function handleClickOutside(event: MouseEvent) {
 		if (search) return;
 		if (searchBlock && !searchBlock.contains(event.target as Node)) {
-			console.log(searchBlock);
 			displaySearch = false;
 		}
 	}
@@ -87,19 +86,18 @@
 	});
 </script>
 
-{#if displaySearch}
-	<div bind:this={searchBlock} class="flex px-2 h-12 mb-1 relative">
-		<input
-			use:focus
-			placeholder="Search clipboard"
-			class="w-full bg-base-100 px-2 outline-none rounded-btn rounded-t-none ring-2 ring-accent/70"
-			bind:value={search}
-		/>
-		<SearchFilterHelp class="absolute right-3 top-2 bg-base-100 hover:bg-base-300 btn-sm" />
-	</div>
-{/if}
-
-<div class={cn('h-[calc(100vh-4rem)]', displaySearch && 'h-[calc(100vh-7.25rem)]')}>
+<div class="h-[calc(100vh-4rem)] relative">
+	{#if displaySearch}
+		<div bind:this={searchBlock} class="flex px-2 h-12 w-full z-40 mb-1 absolute -top-14 left-0">
+			<input
+				use:focus
+				placeholder="Search clipboard"
+				class="w-full bg-base-100 px-2 outline-none rounded-btn ring-2 ring-accent/70"
+				bind:value={search}
+			/>
+			<SearchFilterHelp class="absolute right-3 top-2 bg-base-100 hover:bg-base-300 btn-sm" />
+		</div>
+	{/if}
 	{#if cs.clipboard.length === 0}
 		<div class="flex flex-col items-center justify-center h-full text-center">
 			<p class="text-lg">No clipboard entries</p>
