@@ -1,19 +1,38 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { cn } from '$lib/utils';
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	interface NavDropdownProps extends HTMLAttributes<HTMLElement> {}
+
+	let { class: className, ...props }: NavDropdownProps = $props();
 </script>
 
-<div class="dropdown dropdown-end mb-72">
-	<div tabIndex={0} role="button" class="btn m-1 focus:ring-2 ring-base-content">
-		Menu
+<div {...props} class={cn('dropdown dropdown-end', className)}>
+	<div
+		tabIndex={0}
+		role="button"
+		aria-label="open menu"
+		class="btn btn-circle btn-ghost m-1 focus:ring-2 ring-base-content"
+	>
 		<svg
-			width="12px"
-			height="12px"
-			class="inline-block h-2 w-2 fill-current opacity-60"
 			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 2048 2048"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			class="lucide lucide-menu"
+			><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line
+				x1="4"
+				x2="20"
+				y1="18"
+				y2="18"
+			/></svg
 		>
-			<path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-		</svg>
 	</div>
 
 	<ul

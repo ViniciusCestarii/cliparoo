@@ -7,10 +7,13 @@
 	import cs from '$lib/cliparoo-state.svelte';
 	import ClipboardEntry_1 from '$lib/components/example/clipboard-entry-1.svelte';
 	import ClipboardEntry_2 from '$lib/components/example/clipboard-entry-2.svelte';
+	import ResetData from '$lib/components/reset-data.svelte';
 </script>
 
-<div class="grid xs:grid-cols-[minmax(0,_12rem)_minmax(0,_1fr)] xs:gap-4">
-	<div class="flex flex-col pt-1">
+<div
+	class="h-[calc(100vh-4rem)] overflow-auto grid xs:grid-cols-[minmax(0,_12rem)_minmax(0,_1fr)] xs:gap-4"
+>
+	<div class="flex flex-col pt-1 px-1">
 		<ThemeToggle />
 		<div class="form-control">
 			<div class="divider text-sm">Show</div>
@@ -34,6 +37,8 @@
 				<input type="checkbox" bind:checked={cs.removeMotion} class="toggle toggle-primary" />
 			</label>
 		</div>
+		<div class="divider text-sm">Other</div>
+		<ResetData />
 	</div>
 
 	<div>
