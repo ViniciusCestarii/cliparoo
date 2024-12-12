@@ -14,4 +14,10 @@
 
 </div>
 
-_Currenly in development 🚧_
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./static/screenshot-dark.jpeg">
+    <source media="(prefers-color-scheme: light)" srcset="./static/screenshot-light.jpeg">
+    <img alt="Cliparoo Screenshot" src="./static/screenshot-dark.jpeg" width="600">
+  </picture>
+</div>
